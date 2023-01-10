@@ -54,11 +54,33 @@ function refreshInput(){
   }
 }
 
+function resetStack(){
+  stack = document.getElementById("stack_list");
+  clearElem(stack);
+}
+
+function addToStack(str){
+  stack = document.getElementById("stack_list");
+  listElem = newElement("li", []);
+  textNode = document.createTextNode(str);
+  listElem.appendChild(textNode)
+  stack.appendChild(listElem);
+
+}
+
+function removeFromStack(){
+  stack = document.getElementById("stack_list");
+  if(stack.firstChild){
+    stack.removeChild(stack.lastChild);
+  }
+}
+
 window.addEventListener('load', function(e){
   canvas = document.getElementById("canvas1");
 
   refreshInput();
   refreshCanvas();
+  resetStack();
 
   // Event listener for changing DFA
   changeDFA = document.getElementById("change_dfa");
@@ -70,6 +92,7 @@ window.addEventListener('load', function(e){
     }
     resetInput();
     refreshCanvas();
+    resetStack();
   });
 
   // Event listener for changing input
@@ -82,6 +105,7 @@ window.addEventListener('load', function(e){
     inputPointer = -1;
     refreshInput();
     refreshCanvas();
+    resetStack();
   });
 
   // Event listener for next
@@ -91,6 +115,16 @@ window.addEventListener('load', function(e){
       inputPointer = inputPointer + 1;
       refreshInput();
       refreshCanvas();
+      str = "";
+      if(inputPointer!=0){
+        str += "read character "+dfa[dfaIndex]["input"][inputIndex]["string"][inputPointer-1];
+        str += " and moved from state "+dfa[dfaIndex]["input"][inputIndex]["states"][inputPointer-1];
+        str += " to state "+dfa[dfaIndex]["input"][inputIndex]["states"][inputPointer];
+      }
+      if(inputPointer==0){
+        str += "moved to start state";
+      }
+      addToStack(str);
     }
   });
 
@@ -101,6 +135,7 @@ window.addEventListener('load', function(e){
       inputPointer = inputPointer - 1;
       refreshInput();
       refreshCanvas();
+      removeFromStack();
     }
   });
 
