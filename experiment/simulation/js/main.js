@@ -125,6 +125,22 @@ window.addEventListener('load', function(e){
         str += "moved to start state";
       }
       addToStack(str);
+
+      // Display popup at end
+      if(inputPointer==dfa[dfaIndex]["input"][inputIndex]["string"].length){
+
+        computationStatus = "Rejected";
+
+        for(itr=0;itr<dfa[dfaIndex]["vertices"].length;++itr){
+          if(dfa[dfaIndex]["vertices"][itr]["text"] == curr){
+            if(dfa[dfaIndex]["vertices"][itr]["type"] == "accept"){
+              computationStatus = "Accepted";
+            }
+            break;
+          }
+        }
+        swal("Input string was "+computationStatus);
+      }
     }
   });
 
