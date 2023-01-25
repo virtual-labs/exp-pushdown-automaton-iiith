@@ -7,8 +7,8 @@ width = 500;
 height = 200;
 radius = 25;
 
-dfa = [dfa1, dfa2, dfa3, dfa4, dfa5];
-dfaIndex = 0
+pdfa = [pdfa1];
+pdfaIndex = 0
 
 inputIndex = 0
 inputPointer = -1
@@ -18,15 +18,16 @@ edges = []
 
 function refreshCanvas(){
   clearElem(canvas);
+  clearElem(push_down_stack);
 
   curr = ""
   if(inputPointer != -1){
     console.log("before", inputPointer, curr);
     // console.log(dfa[dfaIndex]["input"]);
-    curr = dfa[dfaIndex]["input"][inputIndex]["states"][inputPointer];
+    curr = pdfa[pdfaIndex]["input"][inputIndex]["states"][inputPointer];
     console.log("after", inputPointer, curr);
   }
-  res = displayCanvas(canvas, dfa[dfaIndex], inputPointer, curr);
+  res = displayCanvas(canvas, push_down_stack, pdfa[pdfaIndex], inputPointer, inputIndex, curr);
 
   nodes = res[0]
   edges = res[1]
@@ -42,13 +43,13 @@ function resetInput(){
 function refreshInput(){
   inputContainer = document.getElementById("input_container");
   clearElem(inputContainer);
-  for(let i=0;i<dfa[dfaIndex]["input"][inputIndex]["string"].length;++i){
+  for(let i=0;i<pdfa[pdfaIndex]["input"][inputIndex]["string"].length;++i){
     textColor = "black";
     if(inputPointer == i){
       textColor = "red";
     }
     span = newElement("font", [["id", "text_"+i], ["color", textColor]]);
-    text = document.createTextNode(dfa[dfaIndex]["input"][inputIndex]["string"][i]);
+    text = document.createTextNode(pdfa[pdfaIndex]["input"][inputIndex]["string"][i]);
     span.appendChild(text);
     inputContainer.appendChild(span);
   }
@@ -77,18 +78,19 @@ function removeFromStack(){
 
 window.addEventListener('load', function(e){
   canvas = document.getElementById("canvas1");
+  push_down_stack = document.getElementById("push_down_stack");
 
   refreshInput();
   refreshCanvas();
   resetStack();
 
   // Event listener for changing DFA
-  changeDFA = document.getElementById("change_dfa");
-  changeDFA.addEventListener("click", function(e){
+  changePDFA = document.getElementById("change_pdfa");
+  changePDFA.addEventListener("click", function(e){
     clearElem(canvas);
-    dfaIndex = dfaIndex + 1;
-    if(dfaIndex >= dfa.length){
-      dfaIndex = 0;
+    pdfaIndex = pdfaIndex + 1;
+    if(pdfaIndex >= pdfa.length){
+      pdfaIndex = 0;
     }
     resetInput();
     refreshCanvas();
@@ -99,7 +101,7 @@ window.addEventListener('load', function(e){
   changeInput = document.getElementById("change_input");
   changeInput.addEventListener("click", function(e){
     inputIndex = inputIndex + 1;
-    if(inputIndex >= dfa[dfaIndex]["input"].length){
+    if(inputIndex >= pdfa[pdfaIndex]["input"].length){
       inputIndex = 0;
     }
     inputPointer = -1;
@@ -111,15 +113,22 @@ window.addEventListener('load', function(e){
   // Event listener for next
   next = document.getElementById("next");
   next.addEventListener("click", function(e){
-    if(inputPointer != dfa[dfaIndex]["input"][inputIndex]["string"].length){
+    if(inputPointer != pdfa[pdfaIndex]["input"][inputIndex]["string"].length){
       inputPointer = inputPointer + 1;
       refreshInput();
       refreshCanvas();
       str = "";
       if(inputPointer!=0){
-        str += "read character "+dfa[dfaIndex]["input"][inputIndex]["string"][inputPointer-1];
-        str += " and moved from state "+dfa[dfaIndex]["input"][inputIndex]["states"][inputPointer-1];
-        str += " to state "+dfa[dfaIndex]["input"][inputIndex]["states"][inputPointer];
+        str += "read character "+pdfa[pdfaIndex]["input"][inputIndex]["string"][inputPointer-1]+",";
+        pushDownStackLength = pdfa[pdfaIndex]["input"][inputIndex]["stack"][inputPointer].length;
+        prevPushDownStackLength = pdfa[pdfaIndex]["input"][inputIndex]["stack"][inputPointer-1].length;
+        if(pushDownStackLength > prevPushDownStackLength){
+          str += " pushed "+pdfa[pdfaIndex]["input"][inputIndex]["stack"][inputPointer][pushDownStackLength-1]+" into stack";
+        }else if(pushDownStackLength < prevPushDownStackLength){
+          str += " popped "+pdfa[pdfaIndex]["input"][inputIndex]["stack"][inputPointer-1][prevPushDownStackLength-1]+" from stack";
+        }
+        str += " and moved from state "+pdfa[pdfaIndex]["input"][inputIndex]["states"][inputPointer-1];
+        str += " to state "+pdfa[pdfaIndex]["input"][inputIndex]["states"][inputPointer];
       }
       if(inputPointer==0){
         str += "moved to start state";
@@ -127,13 +136,13 @@ window.addEventListener('load', function(e){
       addToStack(str);
 
       // Display popup at end
-      if(inputPointer==dfa[dfaIndex]["input"][inputIndex]["string"].length){
+      if(inputPointer==pdfa[pdfaIndex]["input"][inputIndex]["string"].length){
 
         computationStatus = "Rejected";
 
-        for(itr=0;itr<dfa[dfaIndex]["vertices"].length;++itr){
-          if(dfa[dfaIndex]["vertices"][itr]["text"] == curr){
-            if(dfa[dfaIndex]["vertices"][itr]["type"] == "accept"){
+        for(itr=0;itr<pdfa[pdfaIndex]["vertices"].length;++itr){
+          if(pdfa[pdfaIndex]["vertices"][itr]["text"] == curr){
+            if(pdfa[pdfaIndex]["vertices"][itr]["type"] == "accept"){
               computationStatus = "Accepted";
             }
             break;

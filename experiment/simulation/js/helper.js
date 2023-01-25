@@ -26,14 +26,14 @@ function clearElem(elem){
 }
 
 // Global variables width, height and radius need to be set before invoking this function
-function displayCanvas(canvas, dfa, inputPointer, currNode){
+function displayCanvas(canvas, pushDownStack, pdfa, inputPointer, inputIndex, currNode){
   sine45 = 0.707;
 
   nodes = [];
   edges = [];
 
   // Parse nodes in DFA
-  dfa["vertices"].forEach(function(elem, index){
+  pdfa["vertices"].forEach(function(elem, index){
     newnode = {
       "text": elem["text"],
       "type": elem["type"],
@@ -81,7 +81,7 @@ function displayCanvas(canvas, dfa, inputPointer, currNode){
   });
 
   // Parse edges in DFA
-  dfa["edges"].forEach(function(elem, index){
+  pdfa["edges"].forEach(function(elem, index){
     newEdge = {
       "text": elem["text"],
       "type": elem["type"],
@@ -211,6 +211,39 @@ function displayCanvas(canvas, dfa, inputPointer, currNode){
     textline.appendChild(textlinepath);
     canvas.appendChild(textline);
   });
+
+  if(inputIndex >= 0 && inputPointer >= 0){
+    color = "black";
+    stroke_width = "1px";
+    fillColor = "#ffe4c4";
+    pdfa["input"][inputIndex]["stack"][inputPointer].forEach((stackItem, stackItemIndex) => {
+      stackItemHeight = 40;
+      stackItemY = 150 - 40*stackItemIndex;
+      block = newElementNS('rect', [
+        ["id", "push_down_stack_item_"+String(stackItemIndex)],
+        ["x", "10"],
+        ["y", String(stackItemY)],
+        ["width", "80"],
+        ["height", String(stackItemHeight)],
+        ["rx", "10"],
+        ["stroke", color],
+        ["fill", fillColor],
+        ["stroke-width", stroke_width]
+      ]);
+      pushDownStack.appendChild(block);
+    });
+    pdfa["input"][inputIndex]["stack"][inputPointer].forEach((stackItem, stackItemIndex) => {
+      stackItemHeight = 40;
+      stackItemY = 150 - 40*stackItemIndex + stackItemHeight/2;
+      blockText = newElementNS('text', [
+        ["x", "45"],
+        ["y", String(stackItemY)],
+        ["fill", "black"]
+      ]);
+      blockText.textContent = stackItem;
+      pushDownStack.appendChild(blockText);
+    });
+  }
 
   return [nodes, edges];
 

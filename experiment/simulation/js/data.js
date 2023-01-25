@@ -1,153 +1,70 @@
 /****
-  * File containing DFA descriptions
+  * File containing PDFA descriptions
   *
   */
 
-const dfa1 = {
-  "vertices": [
-    {"text": "A", "type": "start"},
-    {"text": "B", "type": "none"},
-    {"text": "C", "type": "none"},
-    {"text": "D", "type": "accept"}
-  ],
-  "edges": [
-    {"start": "A", "end": "B", "text": "0", "type": "forward"},
-    {"start": "B", "end": "C", "text": "1", "type": "forward"},
-    {"start": "C", "end": "C", "text": "0", "type": "self"},
-    {"start": "C", "end": "D", "text": "1", "type": "forward"},
-    {"start": "D", "end": "D", "text": "0,1", "type": "self"}
-  ],
-  "input": [
-    {
-      "string": "01001",
-      "states": ["A", "B", "C", "C", "C", "D"]
-    },
-    {
-      "string": "010111",
-      "states": ["A", "B", "C", "C", "D", "D", "D"]
-    },
-    {
-      "string": "0100110",
-      "states": ["A", "B", "C", "C", "C", "D", "D", "D"]
-    }
-  ]
-}
-
-const dfa2 = {
-  "vertices": [
-    {"text": "A", "type": "start"},
-    {"text": "B", "type": "none"},
-    {"text": "C", "type": "none"},
-    {"text": "D", "type": "accept"}
-  ],
-  "edges": [
-    {"start": "A", "end": "A", "text": "0", "type": "self"},
-    {"start": "A", "end": "B", "text": "1", "type": "forward"},
-    {"start": "B", "end": "B", "text": "0", "type": "self"},
-    {"start": "B", "end": "C", "text": "1", "type": "forward"},
-    {"start": "C", "end": "C", "text": "0", "type": "self"},
-    {"start": "C", "end": "D", "text": "1", "type": "forward"},
-    {"start": "D", "end": "D", "text": "0", "type": "self"}
-  ],
-  "input": [
-    {
-      "string": "0101010",
-      "states": ["A", "A", "B", "B", "C", "C", "D", "D"]
-    },
-    {
-      "string": "00111",
-      "states": ["A", "A", "A", "B", "C", "D"]
-    },
-    {
-      "string": "0110010",
-      "states": ["A", "A", "B", "C", "C", "C", "D", "D"]
-    }
-  ]
-}
-
-const dfa3 = {
-  "vertices": [
-    {"text": "A", "type": "start"},
-    {"text": "B", "type": "accept"},
-  ],
-  "edges": [
-    {"start": "A", "end": "A", "text": "1", "type": "self"},
-    {"start": "A", "end": "B", "text": "0", "type": "forward"},
-    {"start": "B", "end": "A", "text": "1", "type": "backward"},
-    {"start": "B", "end": "B", "text": "0", "type": "self"}
-  ],
-  "input": [
-    {
-      "string": "0101010",
-      "states": ["A", "B", "A", "B", "A", "B", "A", "B"]
-    },
-    {
-      "string": "110100",
-      "states": ["A", "A", "A", "B", "A", "B", "B"]
-    },
-    {
-      "string": "1001",
-      "states": ["A", "A", "B", "B", "A"]
-    }
-  ]
-}
-
-const dfa4 = {
+// PDFA to accept strings of the form 0^n1^n
+const pdfa1 = {
   "vertices": [
     {"text": "A", "type": "start"},
     {"text": "B", "type": "none"},
     {"text": "C", "type": "accept"}
   ],
   "edges": [
-    {"start": "A", "end": "A", "text": "1", "type": "self"},
-    {"start": "A", "end": "B", "text": "0", "type": "forward"},
-    {"start": "B", "end": "C", "text": "1", "type": "forward"},
-    {"start": "B", "end": "B", "text": "0", "type": "self"},
-    {"start": "C", "end": "B", "text": "0", "type": "backward"},
-    {"start": "C", "end": "C", "text": "1", "type": "self"}
+    {"start": "A", "end": "A", "text": "t1", "type": "self"},
+    {"start": "A", "end": "B", "text": "t2", "type": "forward"},
+    {"start": "B", "end": "B", "text": "t3", "type": "self"},
+    {"start": "B", "end": "C", "text": "t4", "type": "forward"}
   ],
+  "transition": {
+    "t1": ["0,Z/0", "0,0/0", "0,00/0"],
+    "t2": ["1,0/&epsilon;", "1,00/&epsilon;"],
+    "t3": ["1,0/&epsilon;", "1,00/&epsilon;"],
+    "t4": ["S,Z/Z"]
+  },
   "input": [
     {
-      "string": "10011",
-      "states": ["A", "A", "B", "B", "C", "C"]
+      "string": "000111S",
+      "states": ["A", "A", "A", "A", "B", "B", "B", "C"],
+      "stack": [
+        [],
+        ["0"],
+        ["0", "0"],
+        ["0", "0", "0"],
+        ["0", "0"],
+        ["0"],
+        [],
+        []
+      ]
     },
     {
-      "string": "1010",
-      "states": ["A", "A", "B", "C", "B"]
+      "string": "00001111S",
+      "states": ["A", "A", "A", "A", "A", "B", "B", "B", "B", "C"],
+      "stack": [
+        [],
+        ["0"],
+        ["0", "0"],
+        ["0", "0", "0"],
+        ["0", "0", "0", "0"],
+        ["0", "0", "0"],
+        ["0", "0"],
+        ["0"],
+        [],
+        []
+      ]
     },
     {
-      "string": "10101",
-      "states": ["A", "A", "B", "C", "B", "C"]
-    }
-  ]
-}
-
-const dfa5 = {
-  "vertices": [
-    {"text": "A", "type": "start"},
-    {"text": "B", "type": "none"},
-    {"text": "C", "type": "none"},
-    {"text": "D", "type": "accept"}
-  ],
-  "edges": [
-    {"start": "A", "end": "A", "text": "1", "type": "self"},
-    {"start": "A", "end": "B", "text": "0", "type": "forward"},
-    {"start": "B", "end": "C", "text": "0", "type": "forward"},
-    {"start": "C", "end": "D", "text": "0", "type": "forward"},
-    {"start": "D", "end": "D", "text": "0,1", "type": "self"}
-  ],
-  "input": [
-    {
-      "string": "1000",
-      "states": ["A", "A", "B", "C", "D"]
-    },
-    {
-      "string": "00010",
-      "states": ["A", "B", "C", "D", "D", "D"]
-    },
-    {
-      "string": "101",
-      "states": ["A", "A", "B", "B"]
+      "string": "00011S",
+      "states": ["A", "A", "A", "A", "B", "B", "B"],
+      "stack": [
+        [],
+        ["0"],
+        ["0", "0"],
+        ["0", "0", "0"],
+        ["0", "0"],
+        ["0"],
+        ["0"]
+      ]
     }
   ]
 }

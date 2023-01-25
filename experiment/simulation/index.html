@@ -12,10 +12,10 @@
 					<div id="instruction-title" class="v-collapsible is-size-5">Instructions<br>Simulating a deterministic finite automata</div>
 					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
 						<ul style="list-style: disc;">
-							<li> <strong>Change DFA</strong> button switches to a different DFA</li>
-              <li><strong>Change input</strong> changes the input given to the DFA</li>
-              <li><strong>Next</strong> displays the next step in DFA simulation</li>
-              <li><strong>Prev</strong> displays the previous step in DFA simulation</li>
+							<li> <strong>Change PDFA</strong> button switches to a different PDFA</li>
+              <li><strong>Change input</strong> changes the input given to the PDFA</li>
+              <li><strong>Next</strong> displays the next step in PDFA simulation</li>
+              <li><strong>Prev</strong> displays the previous step in PDFA simulation</li>
 						</ul>
 					</div>
 				</div>
@@ -26,11 +26,11 @@
     <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
   		<div class="column is-2-desktop is-12-tablet is-12-mobile">
   			<div class="v-datalist-container" style="height:100%">
-  				<div class="v-datalist-title">DFA controls</div>
+  				<div class="v-datalist-title">PDFA controls</div>
   				<div class="v-datalist-row" id="toolbar"
           style="display: flex;flex-direction: column;justify-content: space-evenly;align-items: center;">
-            <button id="change_dfa" type="button" name="button" class="v-button">
-              change DFA
+            <button id="change_pdfa" type="button" name="button" class="v-button">
+              change PDFA
             </button>
             <button id="change_input" type="button" name="button" class="v-button">
               change input
@@ -43,9 +43,13 @@
   				<div id="working-area">
             <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
             </div>
-            <div class="" style="display:flex;flex-direction:column;align-items:center;">
+            <div class="" style="display:flex;flex-direction:row;align-items:center;justify-content:space-evenly;">
               <svg id="canvas1" width='500' height='200' xmlns="http://www.w3.org/2000/svg">
               </svg>
+              <svg id="push_down_stack" width='100' height='200' xmlns="http://www.w3.org/2000/svg">
+              </svg>
+              <!-- <rect x="10" y="150" width="80" height="40"
+              style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" /> -->
             </div>
             <div id="stack_container" style="overflow: auto;">
               <ul id="stack_list">
