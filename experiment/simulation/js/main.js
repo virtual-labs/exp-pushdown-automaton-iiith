@@ -76,6 +76,29 @@ function removeFromStack(){
   }
 }
 
+function updateTransitions(){
+  transitionList = document.getElementById("transitions_list");
+  clearElem(transitionList);
+  Object.keys(pdfa[pdfaIndex]["transition"]).forEach(function(transitionName, transitionIndex){
+    outerDiv = newElement("div", [
+      ["id", "outer_div_"+String(transitionIndex)],
+      ["style", "display:flex;flex-direction:row;align-items:center;justify-content:space-evenly;width:100%;"]
+    ]);
+    transitionNameDiv = newElement("div", []);
+    transitionNameText = document.createTextNode(transitionName);
+    transitionNameDiv.appendChild(transitionNameText);
+    transitionDetailDiv = newElement("div", []);
+    pdfa[pdfaIndex]["transition"][transitionName].forEach(function(transitionRule){
+      transitionDetailText = document.createTextNode(transitionRule);
+      transitionDetailDiv.appendChild(transitionDetailText);
+      transitionDetailDiv.appendChild(newElement("br", []));
+    });
+    outerDiv.appendChild(transitionNameDiv);
+    outerDiv.appendChild(transitionDetailDiv);
+    transitionList.appendChild(outerDiv);
+  });
+}
+
 window.addEventListener('load', function(e){
   canvas = document.getElementById("canvas1");
   push_down_stack = document.getElementById("push_down_stack");
@@ -83,6 +106,7 @@ window.addEventListener('load', function(e){
   refreshInput();
   refreshCanvas();
   resetStack();
+  updateTransitions();
 
   // Event listener for changing DFA
   changePDFA = document.getElementById("change_pdfa");
