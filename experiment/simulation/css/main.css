@@ -1,5 +1,5 @@
 /* You CSS goes in here */
-.v-button { margin-bottom: 5px; }
+.v-button { margin-bottom: 5px; width: inherit;}
 
 .window { z-index:20; }
 .jtk-connector { z-index:4; }
