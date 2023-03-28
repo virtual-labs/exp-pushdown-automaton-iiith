@@ -27,6 +27,14 @@ function refreshCanvas(){
     curr = pdfa[pdfaIndex]["input"][inputIndex]["states"][inputPointer];
     console.log("after", inputPointer, curr);
   }
+
+  PDFADescriptionContainer = document.getElementById("PDFA_description_container");
+  clearElem(PDFADescriptionContainer);
+  span = newElement("font", [["id", "PDFA_description"], ["color", textColor]]);
+  text = document.createTextNode(pdfa[pdfaIndex]["description"]);
+  span.appendChild(text);
+  PDFADescriptionContainer.appendChild(text);
+
   res = displayCanvas(canvas, push_down_stack, pdfa[pdfaIndex], inputPointer, inputIndex, curr);
 
   nodes = res[0]
@@ -77,27 +85,90 @@ function removeFromStack(){
 }
 
 function updateTransitions(){
-  transitionList = document.getElementById("transitions_list");
-  clearElem(transitionList);
+  transitionTable = document.getElementById("transition_table_container");
+
+  table = newElement("table", [["id", "transition_table"]]);
+  tr0 = newElement("tr", [["id", "tr_0"]]);
+
+  tr0th1 = newElement("th", [["id", "tr_0th_1"]]);
+  tr0th1.appendChild(document.createTextNode("transitions"));
+  tr0th2 = newElement("th", [["id", "tr_0th_2"]]);
+  tr0th2.appendChild(document.createTextNode("0"));
+  tr0th3 = newElement("th", [["id", "tr_0th_3"]]);
+  tr0th3.appendChild(document.createTextNode("1"));
+  tr0th4 = newElement("th", [["id", "tr_0th_4"]]);
+  tr0th4.appendChild(document.createTextNode("S"));
+
+  tr0.appendChild(tr0th1);
+  tr0.appendChild(tr0th2);
+  tr0.appendChild(tr0th3);
+  tr0.appendChild(tr0th4);
+
+  table.appendChild(tr0);
+
   Object.keys(pdfa[pdfaIndex]["transition"]).forEach(function(transitionName, transitionIndex){
-    outerDiv = newElement("div", [
-      ["id", "outer_div_"+String(transitionIndex)],
-      ["style", "display:flex;flex-direction:row;align-items:center;justify-content:space-evenly;width:100%;"]
-    ]);
-    transitionNameDiv = newElement("div", []);
-    transitionNameText = document.createTextNode(transitionName);
-    transitionNameDiv.appendChild(transitionNameText);
-    transitionDetailDiv = newElement("div", []);
-    pdfa[pdfaIndex]["transition"][transitionName].forEach(function(transitionRule){
-      transitionDetailText = document.createTextNode(transitionRule);
-      transitionDetailDiv.appendChild(transitionDetailText);
-      transitionDetailDiv.appendChild(newElement("br", []));
+    tr = newElement("tr", [["id", "tr_"+transitionIndex]]);
+
+    trtd0 = newElement("td", [["id", "tr_"+transitionIndex+"td_0"]]);
+    trtd0.appendChild(document.createTextNode(transitionName));
+
+    trtd1 = newElement("td", [["id", "tr_"+transitionIndex+"td_1"]]);
+    text = "";
+    pdfa[pdfaIndex]["transition"][transitionName]["0"].forEach(function(elem){
+      text+=elem;
+      text+=" ";
     });
-    outerDiv.appendChild(transitionNameDiv);
-    outerDiv.appendChild(transitionDetailDiv);
-    transitionList.appendChild(outerDiv);
+    trtd1.appendChild(document.createTextNode(text));
+
+    trtd2 = newElement("td", [["id", "tr_"+transitionIndex+"td_2"]]);
+    text = "";
+    pdfa[pdfaIndex]["transition"][transitionName]["1"].forEach(function(elem){
+      text+=elem;
+      text+=" ";
+    });
+    trtd2.appendChild(document.createTextNode(text));
+
+    trtd3 = newElement("td", [["id", "tr_"+transitionIndex+"td_3"]]);
+    text = "";
+    pdfa[pdfaIndex]["transition"][transitionName]["S"].forEach(function(elem){
+      text+=elem;
+      text+=" ";
+    });
+    trtd3.appendChild(document.createTextNode(text));
+
+    tr.appendChild(trtd0);
+    tr.appendChild(trtd1);
+    tr.appendChild(trtd2);
+    tr.appendChild(trtd3);
+
+    table.appendChild(tr);
   });
+
+  transitionTable.appendChild(table);
 }
+
+// function updateTransitions(){
+//   transitionList = document.getElementById("transitions_list");
+//   clearElem(transitionList);
+//   Object.keys(pdfa[pdfaIndex]["transition"]).forEach(function(transitionName, transitionIndex){
+//     outerDiv = newElement("div", [
+//       ["id", "outer_div_"+String(transitionIndex)],
+//       ["style", "display:flex;flex-direction:row;align-items:center;justify-content:space-evenly;width:100%;"]
+//     ]);
+//     transitionNameDiv = newElement("div", []);
+//     transitionNameText = document.createTextNode(transitionName);
+//     transitionNameDiv.appendChild(transitionNameText);
+//     transitionDetailDiv = newElement("div", []);
+//     pdfa[pdfaIndex]["transition"][transitionName].forEach(function(transitionRule){
+//       transitionDetailText = document.createTextNode(transitionRule);
+//       transitionDetailDiv.appendChild(transitionDetailText);
+//       transitionDetailDiv.appendChild(newElement("br", []));
+//     });
+//     outerDiv.appendChild(transitionNameDiv);
+//     outerDiv.appendChild(transitionDetailDiv);
+//     transitionList.appendChild(outerDiv);
+//   });
+// }
 
 window.addEventListener('load', function(e){
   canvas = document.getElementById("canvas1");
