@@ -5,6 +5,7 @@
 
 // PDFA to accept strings of the form 0^n1^n
 const pdfa1 = {
+  "description": "Check if input is balanced.",
   "vertices": [
     {"text": "A", "type": "start"},
     {"text": "B", "type": "none"},
@@ -17,10 +18,10 @@ const pdfa1 = {
     {"start": "B", "end": "C", "text": "t4", "type": "forward"}
   ],
   "transition": {
-    "t1": ["0,Z/0", "0,0/0", "0,00/0"],
-    "t2": ["1,0/e", "1,00/e"],
-    "t3": ["1,0/e", "1,00/e"],
-    "t4": ["S,Z/Z"]
+    "t1": {"0": ["Z/0", "0/0", "00/0"], "1": [], "S": []},
+    "t2": {"0": [], "1": ["0/e", "00/e"], "S": []},
+    "t3": {"0": [], "1": ["0/e", "00/e"], "S": []},
+    "t4": {"0": [], "1": [], "S": ["Z/Z"]}
   },
   "input": [
     {

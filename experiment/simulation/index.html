@@ -35,13 +35,23 @@
             <button id="change_input" type="button" name="button" class="v-button">
               change input
             </button>
+            <button id="next" type="button" name="button" class="v-button">
+              Next
+            </button>
+            <button id="prev" type="button" name="button" class="v-button">
+              Previous
+            </button>
   				</div>
   			</div>
   		</div>
   		<div class="column is-7-desktop is-12-tablet is-12-mobile">
   			<div id="circuit-board">
   				<div id="working-area">
+            <div id="PDFA_description_container" class="is-size-4 is-centered is-flex-direction-row is-align-content-center">
+            </div>
             <div id="input_container" class="is-size-1 is-centered is-flex-direction-row is-align-content-center">
+            </div>
+            <div id="transition_table_container" class="is-centered is-flex-direction-row is-align-content-center" style="display: flex; justify-content:center; align-items: center;">
             </div>
             <div class="" style="display:flex;flex-direction:row;align-items:center;justify-content:space-evenly;">
               <svg id="canvas1" width='500' height='200' xmlns="http://www.w3.org/2000/svg">
@@ -51,34 +61,15 @@
               <!-- <rect x="10" y="150" width="80" height="40"
               style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" /> -->
             </div>
-            <div id="stack_container" style="overflow: auto;">
-              <ul id="stack_list">
-
-              </ul>
-            </div>
   				</div>
   			</div>
   		</div>
   		<div class="column is-3-desktop is-12-tablet is-12-mobile">
-  			<div class="v-datalist-container components-list" style="margin-bottom:2em;">
-  				<div class="v-datalist-title">Input controls</div>
-  				<div class="v-datalist-row"
-          style="display: flex;flex-direction: column;justify-content: space-evenly;align-items: center;">
-            <button id="next" type="button" name="button" class="v-button">
-              Next
-            </button>
-            <button id="prev" type="button" name="button" class="v-button">
-              Previous
-            </button>
-  				</div>
-  			</div>
-        <div class="v-datalist-container components-list">
-  				<div class="v-datalist-title">Transitions</div>
-  				<div id="transitions_list" class="v-datalist-row"
-          style="display: flex;flex-direction: column;justify-content: space-evenly;align-items: center;">
+        <div id="stack_container" style="overflow: auto;">
+          <ul id="stack_list">
 
-  				</div>
-  			</div>
+          </ul>
+        </div>
   		</div>
   	</div>
 
