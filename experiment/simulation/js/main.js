@@ -7,7 +7,7 @@ width = 500;
 height = 200;
 radius = 25;
 
-pdfa = [pdfa1];
+pdfa = [pdfa1, pdfa2];
 pdfaIndex = 0
 
 inputIndex = 0
@@ -86,6 +86,7 @@ function removeFromStack(){
 
 function updateTransitions(){
   transitionTable = document.getElementById("transition_table_container");
+  clearElem(transitionTable);
 
   table = newElement("table", [["id", "transition_table"]]);
   tr0 = newElement("tr", [["id", "tr_0"]]);
@@ -97,12 +98,15 @@ function updateTransitions(){
   tr0th3 = newElement("th", [["id", "tr_0th_3"]]);
   tr0th3.appendChild(document.createTextNode("1"));
   tr0th4 = newElement("th", [["id", "tr_0th_4"]]);
-  tr0th4.appendChild(document.createTextNode("S"));
+  tr0th4.appendChild(document.createTextNode("e"));
+  tr0th5 = newElement("th", [["id", "tr_0th_5"]]);
+  tr0th5.appendChild(document.createTextNode("S"));
 
   tr0.appendChild(tr0th1);
   tr0.appendChild(tr0th2);
   tr0.appendChild(tr0th3);
   tr0.appendChild(tr0th4);
+  tr0.appendChild(tr0th5);
 
   table.appendChild(tr0);
 
@@ -130,16 +134,25 @@ function updateTransitions(){
 
     trtd3 = newElement("td", [["id", "tr_"+transitionIndex+"td_3"]]);
     text = "";
-    pdfa[pdfaIndex]["transition"][transitionName]["S"].forEach(function(elem){
+    pdfa[pdfaIndex]["transition"][transitionName]["e"].forEach(function(elem){
       text+=elem;
       text+=" ";
     });
     trtd3.appendChild(document.createTextNode(text));
 
+    trtd4 = newElement("td", [["id", "tr_"+transitionIndex+"td_4"]]);
+    text = "";
+    pdfa[pdfaIndex]["transition"][transitionName]["S"].forEach(function(elem){
+      text+=elem;
+      text+=" ";
+    });
+    trtd4.appendChild(document.createTextNode(text));
+
     tr.appendChild(trtd0);
     tr.appendChild(trtd1);
     tr.appendChild(trtd2);
     tr.appendChild(trtd3);
+    tr.appendChild(trtd4);
 
     table.appendChild(tr);
   });
@@ -189,6 +202,7 @@ window.addEventListener('load', function(e){
     }
     resetInput();
     refreshCanvas();
+    updateTransitions();
     resetStack();
   });
 
