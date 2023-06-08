@@ -1,1 +1,1 @@
-## Experiment name
+## Acceptance of a string by Pushdown Automaton
