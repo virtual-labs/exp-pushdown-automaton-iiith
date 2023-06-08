@@ -6,7 +6,6 @@ Before we start with this experiment, we recommend the reader gain an understand
 > Question: Over the alphabet {0,1}, Is there a finite state automaton that recognizes the language defined by all strings with equal number of 1's and 0's. 
 
 
-
 A basic observation is here, we need to keep track of the count of all the 1's and 0's that we have seen, or at least we need to keep track of the imbalance in the count of 1's and 0's that we have seen so far, as we parse the input string. It might seem a little counterintuitive after all the vending machine examples. Sure, we can simulate addition, but we cannot actually “count” entities. The vending machine idea is analogous to counting in a unary alphabet. That is if we had to only keep track of number of 1's that we encountered so far, that is doable. But to recognize the afore mentioned strings, we need something more. Recall that with finite state machines, there’s no associated memory at all, except for what’s available in “control” (current state). Further, there is no history of all the transitions made to reach the current state. It’s almost like a deterministic Markov chain (we have knowledge only of the exact previous state.)
 
 So, how do we count? Could we possibly do this by using some memory? *<cue good old computer science style memory- stacks!>* Now this new machine, that is a finite state automaton equipped with a stack, is what we call a **pushdown automaton**. 
@@ -25,8 +24,9 @@ A **Pushdown automata** (PDA for short) can be represented as a 6-tuple (Q, Σ, 
 5. q_0 ∈ Q is the initial state 
 6. F ⊆ Q is the set of final states.
 
+![](images/PDA0.jpeg)
 
-ID shows how a PDA computes an input string and makes a decision to accept it or reject it. It is represented as a triple δ(q, w, α), where - 
+Instantaneous Description shows how a PDA computes an input string and makes a decision to accept it or reject it. It is represented as a triple δ(q, w, α), where - 
 
 1. q describes the current state
 2. w describes the remaining input 
@@ -50,6 +50,8 @@ This requires the following to be true:
 The following is a PDA for the language with the set of strings $\{0^n, 1^n| n>0\}$. Here Z (or alternatively $\perp$) denotes the empty stack and stack alphabet is $\{X\}$.
 
 ![PDA for the strings of the kind 0^n1^n](images/PDA1.jpeg)
+
+
 The logic involved in designing this PDA - 
 
 1. $δ(q_0,0,Z)={(q_0,XZ)}$ - push an X onto the stack for the first 0 in the input.
@@ -59,7 +61,7 @@ The logic involved in designing this PDA -
 5. $δ(q_1,ϵ,Z)={(q_2,Z)}$ - Bottom of the stack.
 
 
-<details><summary>Exercise: Design a pushdown automaton that accepts a language  { $0^m 1^m 0^n | m, n>=1$}.</summary>
+<details><summary>Exercise 1: Design a pushdown automaton that accepts a language  { $0^m 1^m 0^n | m, n>=1$}.</summary>
 The solution to this builds on the previous example. 
 
 ![PDA for the strings of the kind 0^m1^m0^n](images/PDA2.jpeg)
@@ -76,7 +78,8 @@ The solution to this builds on the previous example.
     5. q1 is the start state
     6. $F = \{q4\}$
 </details> 
-<details><summary> Exercise 3: $G = { a^i b^j c^k | i, j, k ≥ 0; i + j = k\}$</summary>
+
+<details><summary> Exercise 3: $G = { a^i b^j c^k | i, j, k \geq 0; i + j = k\}$</summary>
     
     1. $Q = \{q_1, q_2, q_3, q_4, q_5\}$
     2. $\sum = \{a, b, c\}$
