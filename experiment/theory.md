@@ -170,5 +170,5 @@ A7: No, a PDA can only recognize context-free languages. There are languages tha
 
 # Food for Thought
 
-Design a pushdown automaton (PDA) that recognizes the language ${ww^Rw | w is a string of 0s and 1s}. 
+Design a pushdown automaton (PDA) that recognizes the language ${ww^Rw | w is a string of 0s and 1s}$. 
 >How about we add another stack? Would that help us solve this problem?
