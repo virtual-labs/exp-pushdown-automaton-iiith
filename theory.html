@@ -1,0 +1,569 @@
+<!DOCTYPE html><html lang="en"><head>
+      <!--Google Tag Manager-->
+      <script class="gtm">
+        var dataLayer = [{
+        'labName': 'Virtual Lab',
+        'discipline': 'Test',
+        'college': 'IIITH',
+        'phase': 'Testing',
+        'expName': 'ACCEPTANCE OF A STRING BY PUSHDOWN AUTOMATON',
+        'expShortName': 'pushdown-automaton'
+        }];
+    
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5NMQ9NQ');
+      </script>
+      <!--End Google Tag Manager-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    
+    	<meta name="experiment-short-name" content="pushdown-automaton">
+    	<meta name="developer-institute" content="IIITH">
+    	<meta name="learning-unit" content="ACCEPTANCE OF A STRING BY PUSHDOWN AUTOMATON">
+    	<meta name="task-name" content="Theory">
+    
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#4076e0">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#4076e0">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#4076e0">
+    <title>Virtual Labs</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.ico">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=Raleway&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/github-markdown.min.css">
+    <link rel="stylesheet" href="./assets/css/vlabs-style.css">
+    <link rel="stylesheet" href="./assets/katex_assets/katex.min.css">
+    
+    <script src="./assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      h1 {
+      font-size: 1.8rem;
+      }
+      h2 {
+      font-size: 1.4rem;
+      }
+      h3 {
+      font-size: 1.2rem;
+      }
+
+      h2, h3 {
+      font-weight: 800;
+      }
+    </style>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"></head>
+  <body class="p-0 container-fluid vlabs-page d-flex flex-column justify-content-between">
+      <!--Google Tag Manager (noscript)-->
+      <noscript class="gtm">
+        <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-5NMQ9NQ" style="display:none;visibility:hidden" width="0">
+        </iframe>
+      </noscript>
+      <!--End Google Tag Manager (noscript)-->
+  
+      <header class="vlabs-header sticky-top bg-white">
+        <nav class="p-0 navbar navbar-light d-flex align-items-stretch">
+          
+          <button class="navbar-toggler px-4" type="button" onclick="toggle()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="d-flex justify-content-center">        
+            <a href="https://vlab.co.in" class="navbar-brand">
+              <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+            </a>
+          </div>
+          
+          <div id="headerNavbar" class="d-none border-top flex-grow-1 d-lg-flex align-items-center justify-content-end">
+            <div class="svc-rating-display">
+                <rating-display spreadsheetid="1x12nhpp0QvnsA6x-O1sV4IA9SAbfVsq_wiexWkutOmU" sheetname="Experiment-Database" columnname="Experiment Short Name" columnvalue="pushdown-automaton" imagesdirectory="./plugins/svc-rating/images/">
+                </rating-display>
+            </div>      <div class="svc-rating-submit">
+                <rating-submit title="Rate" this="" experiment="">
+                </rating-submit>
+            </div>      <bug-report id="bug-report" title="[BUG REPORT] ACCEPTANCE OF A STRING BY PUSHDOWN AUTOMATON" page-type="text" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;IIITH&quot;,&quot;expname&quot;:&quot;ACCEPTANCE OF A STRING BY PUSHDOWN AUTOMATON&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" button_style="border: none; color: #fff; background-color: #288ec8; text-align: center; font-size: 1.05rem; border-radius: 1em;padding: 0.6em 1.2em; margin: 0 10px" position="override" custom_button_class="v-button"></bug-report>
+          </div>
+        </nav>
+      </header>
+      <div class="container-fluid flex-fill d-flex flex-column vlabs-page-main">
+        <div class="row d-flex justify-content-between">
+          <div class="flex-column">
+          <div class="row py-4 px-4 breadcrumbs">
+          	<div class="title is-4 tools">Tools</div>
+          	<span class="mx-2">
+          		<i aria-hidden="true" class="fa fa-angle-right"></i>
+          	</span>
+          	<a href="performance-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Performance Tool</button>
+          	</a>
+          	<a href="validator-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Validation Tool</button>
+          	</a>
+          </div>
+          </div>
+        </div>
+        <div class="row flex-grow-1 d-flex flex-nowrap flex-column flex-lg-row">
+          <div class="modal fade popupmenu" id="popupMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                              <a href="https://vlab.co.in" class="navbar-brand">
+                                  <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+                              </a>
+                          </h5>
+                          <button type="button" class="btn-close align-self-center" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body nav-menu">
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="index.html" class="p-2 ">
+                                      Aim
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="theory.html" class="p-2  current-item ">
+                                      Theory
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="pretest.html" class="p-2 ">
+                                      Pretest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="procedure.html" class="p-2 ">
+                                      Procedure
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="simulation.html" class="p-2 ">
+                                      Simulation
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="posttest.html" class="p-2 ">
+                                      Posttest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="references.html" class="p-2 ">
+                                      References
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="feedback.html" class="p-2 ">
+                                      Feedback
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="nav flex-column sidebar nav-menu flex-shrink-0 px-lg-4 align-items-center align-items-lg-start hidden d-none d-lg-flex" id="menu">
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="index.html" class="p-2 ">
+                        Aim
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="theory.html" class="p-2  current-item ">
+                        Theory
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="pretest.html" class="p-2 ">
+                        Pretest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="procedure.html" class="p-2 ">
+                        Procedure
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="simulation.html" class="p-2 ">
+                        Simulation
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="posttest.html" class="p-2 ">
+                        Posttest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="references.html" class="p-2 ">
+                        References
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="feedback.html" class="p-2 ">
+                        Feedback
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+          </div>          <div class="vlabs-page-content px-5 pb-4 flex-grow-1 markdown-body">
+            <div class="text-center fix-spacing">
+              <h2 id="acceptance-of-a-string-by-pushdown-automaton">Acceptance of a string by Pushdown Automaton</h2>
+          
+            </div>
+              <h2 id="introduction">Introduction</h2>
+          <p>Before we start with this experiment, we recommend the reader gain an understanding of <a href="https://virtual-labs.github.io/exp-determinstic-finite-automaton-iiith/">Determininistic Finite Automata (DFA)</a> and <a href="https://virtual-labs.github.io/exp-non-determinstic-finite-automaton-iiith/">Non-determininistic Finite Automata (DFA)</a>. </p>
+          <blockquote>
+          <p>Question: Over the alphabet {0,1}, Is there a finite state automaton that recognizes the language defined by all strings with equal number of 1's and 0's. </p>
+          </blockquote>
+          <p>A basic observation is here, we need to keep track of the count of all the 1's and 0's that we have seen, or at least we need to keep track of the imbalance in the count of 1's and 0's that we have seen so far, as we parse the input string. It might seem a little counterintuitive after all the vending machine examples. Sure, we can simulate addition, but we cannot actually “count” entities. The vending machine idea is analogous to counting in a unary alphabet. That is if we had to only keep track of number of 1's that we encountered so far, that is doable. But to recognize the afore mentioned strings, we need something more. Recall that with finite state machines, there’s no associated memory at all, except for what’s available in “control” (current state). Further, there is no history of all the transitions made to reach the current state. It’s almost like a deterministic Markov chain (we have knowledge only of the exact previous state.)</p>
+          <p>So, how do we count? Could we possibly do this by using some memory? <em>&lt;cue good old computer science style memory- stacks!&gt;</em> Now this new machine, that is a finite state automaton equipped with a stack, is what we call a <strong>pushdown automaton</strong>. </p>
+          <p>Pushdown automata is to context-free languages, what NFA’s and DFA’s are to regular languages: PDA’s recognise the languages generated by context-free grammars. Actually, only non-deterministic pushdown automata is truly equivalent in “accepting” power as is the generating power of context-free grammars.</p>
+          <h3 id="formal-definition">Formal definition</h3>
+          <p>Now that we are familiar with the basics of pushdown automata, here is a formal definition.</p>
+          <p>A <strong>Pushdown automata</strong> (PDA for short) can be represented as a 6-tuple (Q, Σ, Γ, δ, q0, F ), where </p>
+          <ol>
+          <li>Q is the set of states</li>
+          <li>Σ is the input symbols</li>
+          <li>Γ is the stack alphabet/pushdown symbols</li>
+          <li>δ is the transition function that maps Q x {Σ ∪ ∈} x Γ into Q x Γ*</li>
+          <li>q_0 ∈ Q is the initial state </li>
+          <li>F ⊆ Q is the set of final states.</li>
+          </ol>
+          <p><img src="images/PDA0.jpeg" alt=""></p>
+          <p>Instantaneous Description shows how a PDA computes an input string and makes a decision to accept it or reject it. It is represented as a triple δ(q, w, α), where - </p>
+          <ol>
+          <li>q describes the current state</li>
+          <li>w describes the remaining input </li>
+          <li>α describes the current contents of the stack</li>
+          </ol>
+          <p>A move from one instantaneous description to another is denoted by the symbol ‘⊢’. This is known as the turnstile notation. </p>
+          <h2 id="pda-and-context-free-languages">PDA and Context-Free Languages</h2>
+          <blockquote>
+          <p><strong>Theorem:</strong> A language is context-free if and only if there is a pushdown automaton that recognizes it.</p>
+          </blockquote>
+          <p>This requires the following to be true:</p>
+          <ol>
+          <li>If a language is context-free, then some PDA recognizes it. </li>
+          <li>If a PDA recognizes a language, then the language is context-free.</li>
+          </ol>
+          <h2 id="examples">Examples</h2>
+          <p>The following is a PDA for the language with the set of strings ${0^n, 1^n| n&gt;0}$. Here Z (or alternatively $\perp$) denotes the empty stack and stack alphabet is ${X}$.</p>
+          <p><img src="images/PDA1.jpeg" alt="PDA for the strings of the kind 0^n1^n"></p>
+          <p>The logic involved in designing this PDA - </p>
+          <ol>
+          <li>$δ(q_0,0,Z)={(q_0,XZ)}$ - push an X onto the stack for the first 0 in the input.</li>
+          <li>$δ(q_0,0,X)={(q_0,XX)}$ - push an X onto the stack for each subsequent 0 in the input.</li>
+          <li>$δ(q_0,1,X)={(q_1,ϵ)}$ - at the first 1, go to state <em>p</em> and pop one <em>X.</em></li>
+          <li>$δ(q_1,1,X)={(q_1,ϵ)}$ - Pop an <em>X</em> on each subsequent 1.</li>
+          <li>$δ(q_1,ϵ,Z)={(q_2,Z)}$ - Bottom of the stack.</li>
+          </ol>
+          <details><summary>Exercise 1: Design a pushdown automaton that accepts a language  { $0^m 1^m 0^n | m, n&gt;=1$}.</summary>
+          The solution to this builds on the previous example. 
+          
+          <p><img src="images/PDA2.jpeg" alt="PDA for the strings of the kind 0^m1^m0^n"></p>
+          </details>
+          
+          
+          
+          <details><summary>Exercise 2: $G = \{ w ∈ \{0, 1\}^∗ | w = w^R;   w = 2k+1,  k &gt;= 0\}$.</summary>
+          
+          <pre><code>1. $Q = \{q_1, q_2, q_3, q_4\}$
+          2. $\sum = \{0, 1\}$
+          3. $\Gamma = \{0,1\}$
+          4. table for the transition function
+          5. q1 is the start state
+          6. $F = \{q4\}$
+          </code></pre>
+          </details> 
+          
+          <details><summary> Exercise 3: $G = { a^i b^j c^k | i, j, k \geq 0; i + j = k\}$</summary>
+              
+          <pre><code>1. $Q = \{q_1, q_2, q_3, q_4, q_5\}$
+          2. $\sum = \{a, b, c\}$
+          3. $\Gamma = \{x, \$\}$
+          4. table for the transition function
+          5. q1 is the start state
+          6. $F = \{q5\}$
+          </code></pre>
+          </details>    
+          
+          
+          <h1 id="recap">Recap</h1>
+          <details>
+          <summary>
+          1.  What is a pushdown automaton (PDA)?</summary>
+          
+          <pre><code> A pushdown automaton is a finite-state machine with an additional stack that can be used to store and retrieve symbols. It is used to recognize context-free languages.
+          </code></pre>
+          </details>
+          
+          <details>
+          <summary>
+          2. What are the components of a PDA?</summary>
+          
+          <pre><code>A PDA consists of a finite set of states, an input alphabet, a stack alphabet, a transition function, an initial state, a stack symbol, and a set of accepting states.
+          </code></pre>
+          </details>
+          
+          <details>
+          <summary>
+          3. How does a PDA process input?</summary>
+              
+          <pre><code>A PDA reads input symbols one by one and can perform the following actions:
+          
+          - Read an input symbol and transition to a new state.
+          - Push a symbol onto the stack.
+          - Pop a symbol from the stack.
+          - Read an input symbol and pop a symbol from the stack.
+          </code></pre>
+          </details>
+          
+          <details>
+          <summary>
+          4. What is the role of the stack in a PDA?</summary>
+          
+          <pre><code>The stack in a PDA allows it to remember and match symbols in a last-in, first-out (LIFO) manner. It is used to keep track of information necessary for recognizing context-free languages.
+          </code></pre>
+          </details>
+          
+          <details>
+          <summary>
+          5.  What is the difference between a deterministic PDA (DPDA) and a nondeterministic PDA (NPDA)?</summary>
+          
+          <pre><code>In a DPDA, there is at most one transition defined for each input symbol and stack symbol combination. In an NPDA, there can be multiple transitions defined for the same input symbol and stack symbol combination.
+          </code></pre>
+          </details>
+          
+          <details>
+          <summary>
+          6. How is the language recognized by a PDA defined?</summary>
+          
+          <pre><code>The language recognized by a PDA is defined as the set of all strings for which the PDA can reach an accepting state when processing the input.
+          </code></pre>
+          </details>
+          
+          <details>
+          <summary>
+          7. Can a PDA recognize languages that are not context-free?</summary>
+          A7: No, a PDA can only recognize context-free languages. There are languages that are not context-free, and they cannot be recognized by a PDA.
+          </details>
+          
+          <details>
+          <summary>
+          8. What is the relationship between PDAs and context-free grammars (CFG)?
+              PDAs and CFGs are equivalent in terms of language recognition. That is, for every CFG, there exists a PDA that recognizes the same language, and vice versa.
+          
+          </summary></details>
+          
+          <details>
+          <summary>
+          9. Can a PDA recognize an infinite language?</summary>
+              Yes, a PDA can recognize infinite languages. The stack allows the PDA to handle potentially unbounded amounts of information and process strings of arbitrary length.
+          
+          </details>
+          
+          <details>
+          <summary>
+          10. What are some practical applications of PDAs?</summary>
+          
+          <ol>
+          <li>Programming Languages Parsers: PDAs are widely used in compiler construction to parse and analyze the syntax of programming languages. They help in checking the correctness of the program's structure and generating an Abstract Syntax Tree (AST) for further processing, which has its uses in compilers, linters, and syntax highlighters</li>
+          <li>Natural Language Processing: PDAs can be used for syntactic analysis and parsing of natural language sentences. They help in determining the grammatical structure of sentences and identifying the parts of speech, phrases, and dependencies between words. This is essential in tasks such as language understanding, machine translation, and sentiment analysis. </li>
+          <li>DNA Sequence Analysis: PDAs are utilized in bioinformatics for analyzing DNA sequences. They can recognize patterns in DNA strings and assist in tasks such as identifying genes, detecting motifs, and predicting protein structures.</li></ol></details>
+          
+          <h1 id="food-for-thought">Food for Thought</h1>
+          <p>Design a pushdown automaton (PDA) that recognizes the language ${ww^Rw | w is a string of 0s and 1s}$. </p>
+          <blockquote>
+          <p>How about we add another stack? Would that help us solve this problem?</p>
+          </blockquote>
+          
+          </div>
+          <div class="bug-report-mobile">
+              <bug-report id="bug-report" title="[BUG REPORT] ACCEPTANCE OF A STRING BY PUSHDOWN AUTOMATON" page-type="text" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;IIITH&quot;,&quot;expname&quot;:&quot;ACCEPTANCE OF A STRING BY PUSHDOWN AUTOMATON&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" position="override" button_style="
+                          position: fixed; 
+                          bottom: 20px;
+                          right: 20px;
+                          z-index: 1;
+                          font-size: 0;
+                          padding: 25px;
+                          border-radius: 50%;
+                          border: none;
+                          background-color: #0fc0ff;
+                          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAAXNSR0IArs4c6QAABiFJREFUaEPFmVuMFEUUhv/TM7uwoBGVyG22u7ZnYGG5REETo8RA1BhFIka8ABFf0PCgDxhFEpCLqAlE1OiTiSj4gFGjD0QBETQaEqPRICALSHdPV+8YQQJBA+wuO1PHdMNcWGame2ZWqMfuc/nq1KlT1acJAzhShjFVAUsYdL8G3HjRdA7gHwna5uahLR91dnaeb9QlNWrA1+/o6GjuPnv2DQ30LICKNhk4qLF63PK8g434rejATJhjKa6m9WazOzOZzKlKTmYAcc8QnxEwJwqIAk5STpvpZJwD1eTHjR43PKflhtkZ2+ovVxbaTJiTSVM/gzCYGIebu4fc1nmi80w5J0nDWA7Qq1GACzLMR3pV7pZMJtNdTs/UzelE6msAQ0BYb7vuS6VyZaGTungGhPfygkRYZ7nusv4OEonEDc2xuEfA0JqgATBhieO6b/fXE0IM1pgPECgVvGP+x/bksFDo1JhUguPZI8FMAz0+zzFtSjqd9p8VRlJvew7E79QKHNgEDjrSndRfNyXEGmasLK4KttmeOysU2hdIGm0vA/xKUZh32VLeW6psCrGMmO+uB5qIeEh398P7jx8/m9cP9pGm9vtpmQ9WjHDzUSkPRYJOpVKDuK9vP0Dj8goMfsSR8ot6IKPoJI22XUBpEHitLWUx6heNVC15pmHMItCXBYeKPUZsLlFWVYNQsVg2nU7v82XaW1tHZ4lGhUEztOlEKOQ4A/b5XHZyuc0aWqdNIbYSY3aY00veM/9te3KE/ywlxGpmrKpJP8h5ftCR8qtyeqHQY3XdVNAO5vMskvMGoRWrT9Ke90QlX6HQF6N16Y4OI28Ampn/jatcxx+ZzJ8NQScSiZZBWvzJwAhhJoCKUQhkaoVmnAZoJcC9WowOH02nf6gWl0iRLpQk3ZwOym0n0DVVg10rNAAF7Ig1xedYltUbtpCRoZO6Po1J+z7S6VcHdLCIClusLnfBgED7NVv1ZX8lYGKYwbrSo8Qogxc4Um5pOD1Mo20DgZ+PBFxPTpcYJuBUljDRdd1jdW/EcYnEmKwWSxNR05WADnwo2mB3pV+oGzopxDowlkYGbjDSF9ILpwd1D2mtdB2uuhEv3D+yfwG4/opCB5WVnrZk+v1yfqtCJ3X9TpC2pybggYj0BYcf29KdXwe0WArCuqsCzSxtT4qq0GareStIXXo3JjxGwNSrAh0crMFFq3jYEJ9wpPygkB6mYZwg0PCaAcsp1Hm4RPFtS5eK0LpxvqayVs3DlYIO7r0K8xUhlufRGKNrupLmFQcImsEZBhWaOxq4y5ZyRvXqIcSnYDwaZdkukRkgaGqK32RZ1on+/qt/buliFRFWXxXokonXBJ3S22Yz8darAc2sdjqed1/NddpvnMQUHwPRdTWBD0R6EBbbrltoGJX6D71PJ3V9E0h76kpCMzirNTWNLpfPPkcodNDXi6m9QLGqhE6gwUgzaKMj04sq+QmF9hVrjnYj0IwejmvtjuN4DUEbhjEqztgLoqCXEToagQavsKV8rZqPSJH2DaSEmMGMXZHSpE5oZnzneK7fL8w1DJ1sTU6CltvEwPj/88OWwRYx77Y9b3HD0KYuvqUL/Y5oo85I542TooesrnTF8yE0PUwh5hGj6tfxZTNpEBqKvUE9QyfW9bnV3t5+bV9P7yECxuTBFGOvRn5v5eJgTLzsUhUFmuGCcLJoBiNL/ZT7bVFYiWrrnTSM9QC9WBSmzy2ZnluqI4QYGQcWM/O8Qi+7EjSjB4xtTNqHjuf4HVHO20q1tiZZi/k/j1r8Z8zcRxyfanfZv/dnrJgeYw1jQo6xr+SOfY5j2oRq9VMIIWLA7QSMslz3raDGG8ZMJhoPpR1QmvrFdd2eSoFKGm0rAF5bfM97bCnvKp2c/64idFLXd4C0woWFwMstKV+PthPrk/L/R/aeOfcbCBOKq8uLLCk3llos/0tON+8hUt+U5O1Rao5PjtIcrA+3qOWvDEC78wFlIO1I1wyFTuptC0G8uWSZHrCl3N4oUFT9NiE2a4yFQW6DLUfKsaHQU0aMGHq2pWULM98Bpncdzy35yxXVdf1yftXK9vS8CUVjtBjWHHXdn0qt/Qf/x1JblU8EiAAAAABJRU5ErkJggg==);
+                          background-repeat: no-repeat;
+                          background-position: center;
+                          background-size: 30px;
+                          filter: invert(1);">
+              </bug-report>
+          </div>        </div>
+      </div>
+      <footer class="text-light pt-2 vlabs-footer d-flex flex-column">
+        <div class="row px-5 mx-0">
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Community Links</span>
+            <a href="https://www.sakshat.ac.in/" class="text-light">Sakshat Portal</a>
+            <a href="http://outreach.vlabs.ac.in/" class="text-light">Outreach Portal</a>
+            <a href="https://vlab.co.in/faq" class="text-light">FAQ: Virtual Labs</a>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Contact Us</span>
+            <span> Phone: General Information: 011-26582050 </span>
+            <span> Email: support@vlabs.ac.in </span>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Follow Us</span>
+            <div class="social-links">
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #55acee;" href="https://twitter.com/TheVirtualLabs">
+      	  <i class="fa fa-twitter"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #3b5998;" href="https://www.facebook.com/Virtual-Labs-IIT-Delhi-301510159983871/">
+      	  <i class="fa fa-facebook"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #e52d27;" href="https://www.youtube.com/watch?v=asxRaOgk6a0">
+      	  <i class="fa fa-youtube"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #2867B2;" href="https://in.linkedin.com/in/virtual-labs-008ba9136">
+      	  <i class="fa fa-linkedin"></i>
+      	</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-0 py-2 text-center" style="font-family: &quot;Open Sans&quot;, sans-serif; background: #212121;">
+          <a class="text-primary font-weight-bold" href="https://www.gnu.org/licenses/agpl-3.0.en.html"> AGPL 3.0 </a>
+          &nbsp;&amp;&nbsp;
+          <a class="text-primary font-weight-bold" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"> Creative Commons (CC BY-NC-SA 4.0) </a>
+        </div>
+      </footer>
+    <script src="./assets/js/toggleSidebar.js"></script>
+    <script src="./assets/js/event-handler.js"></script>
+
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register("sw.js");
+        });
+      }
+    </script>
+  
+
+<script type="module" src="https://virtual-labs.github.io/svc-bug-report/client/src/bug-report.js"></script><script type="module" src="plugins/svc-rating/index.js"></script><script type="module" src="plugins/svc-rating/config.js"></script><script type="module" src="https://apis.google.com/js/api.js"></script></body></html>

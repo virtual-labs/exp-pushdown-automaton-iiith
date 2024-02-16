@@ -1,0 +1,44 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "Can a PDFA accept palindromes?",
+      "answers": {
+        "a": "yes",
+        "b": "no"
+      },
+      "explanations": {
+        "a": "",
+        "b": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Does the computation power increase by adding another stack?",
+      "answers": {
+        "a": "yes",
+        "b": "no"
+      },
+      "explanations": {
+        "a": "",
+        "b": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Do stack symbols and alphabet set need to be the same?",
+      "answers": {
+        "a": "yes",
+        "b": "no"
+      },
+      "explanations": {
+        "a": "",
+        "b": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    }
+  ]
+}
