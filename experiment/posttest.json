@@ -1,6 +1,94 @@
 {
   "version": 2.0,
-  "questions": [
+    "questions": [
+  {
+    "question": "Which type of language is recognized by a Pushdown Automaton (PDA)?",
+    "answers": {
+      "a": "Regular",
+      "b": "Context-Free",
+      "c": "Context-Sensitive",
+      "d": "Unrestricted"
+    },
+    "correctAnswer": "b",
+    "difficulty": "beginner"
+  },
+  {
+    "question": "Which data structure is used by a PDA to store additional information?",
+    "answers": {
+      "a": "Queue",
+      "b": "Stack",
+      "c": "Linked List",
+      "d": "Array"
+    },
+    "correctAnswer": "b",
+    "difficulty": "beginner"
+  },
+  {
+    "question": "A context-free grammar (CFG) consists of which set of components?",
+    "answers": {
+      "a": "Terminals, non-terminals, start symbol, and production rules",
+      "b": "States, transitions, and input symbols",
+      "c": "Initial state, final state, and stack symbols",
+      "d": "Alphabet, states, and final states"
+    },
+    "correctAnswer": "a",
+    "difficulty": "beginner"
+  },
+  {
+    "question": "Which of the following problems can be solved by a context-free grammar (CFG) but not by a DFA?",
+    "answers": {
+      "a": "Balanced parentheses",
+      "b": "String matching",
+      "c": "Counting even number of zeros",
+      "d": "Recognizing binary multiples of 3"
+    },
+    "correctAnswer": "a",
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "What is the difference between a DFA and a PDA?",
+    "answers": {
+      "a": "A PDA uses a stack, while a DFA does not",
+      "b": "A DFA recognizes context-free languages, while a PDA recognizes regular languages",
+      "c": "A PDA can only recognize finite languages",
+      "d": "A DFA can use a stack, while a PDA cannot"
+    },
+    "correctAnswer": "a",
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "Which of the following is an example of a context-free language?",
+    "answers": {
+      "a": "The set of all strings with equal numbers of a's and b's",
+      "b": "The set of all palindromes over {a, b}",
+      "c": "The set of binary strings with an even number of zeros",
+      "d": "The set of all strings that contain 'aa' as a substring"
+    },
+    "correctAnswer": "b",
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "Which of the following is NOT true for context-free grammars?",
+    "answers": {
+      "a": "They can generate some non-regular languages",
+      "b": "They are equivalent in power to PDAs",
+      "c": "They are closed under union and concatenation",
+      "d": "They are closed under intersection"
+    },
+    "correctAnswer": "d",
+    "difficulty": "advanced"
+  },
+  {
+    "question": "Which of the following symbols is commonly used to represent the empty stack in PDA computations?",
+    "answers": {
+      "a": "ε (epsilon)",
+      "b": "Z0",
+      "c": "#",
+      "d": "λ (lambda)"
+    },
+    "correctAnswer": "b",
+    "difficulty": "beginner"
+  }
     {
       "question": "Can a PDFA accept palindromes?",
       "answers": {
