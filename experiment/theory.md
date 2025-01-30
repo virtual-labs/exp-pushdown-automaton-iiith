@@ -24,7 +24,7 @@ A **Pushdown automata** (PDA for short) can be represented as a 6-tuple $ (Q, \S
 5. $ q_0 \in Q $ is the initial state 
 6. $ F \subseteq Q $ is the set of final states.
 
-<img src="images/PDA0.jpeg" alt="Pushdown Automaton" width="300">
+<img src="images/PDA0.jpeg" alt="Pushdown Automaton" width="700">
 <!-- ![](images/PDA0.jpeg) -->
 
 Instantaneous Description shows how a PDA computes an input string and makes a decision to accept it or reject it. It is represented as a triple $ \delta(q, w, \alpha) $, where - 
@@ -51,7 +51,7 @@ This requires the following to be true:
 The following is a PDA for the language with the set of strings $ \{0^n, 1^n| n>0\} $. Here Z (or alternatively $ \perp $) denotes the empty stack and stack alphabet is $ \{X\} $.
 
 
-<img src="images/PDA1.jpeg" alt="Pushdown Automaton for the strings of the kind 0^n1^n" width="300">
+<img src="images/PDA1.jpeg" alt="Pushdown Automaton for the strings of the kind 0^n1^n" width="700">
 <!-- ![PDA for the strings of the kind 0^n1^n](images/PDA1.jpeg) -->
 
 
@@ -68,7 +68,7 @@ The logic involved in designing this PDA -
 The solution to this builds on the previous example. 
 
 
-<img src="images/PDA0.jpeg" alt="Pushdown Automaton for the strings of the kind $ 0^m 1^m 0^n" width="300">
+<img src="images/PDA0.jpeg" alt="Pushdown Automaton for the strings of the kind $ 0^m 1^m 0^n" width="700">
 <!-- ![PDA for the strings of the kind $ 0^m1^m0^n $](images/PDA2.jpeg) -->
 </details>
 
