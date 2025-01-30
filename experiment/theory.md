@@ -1,4 +1,4 @@
-## Introduction
+### Introduction
 
 Before we start with this experiment, we recommend the reader gain an understanding of [Determininistic Finite Automata (DFA)](https://virtual-labs.github.io/exp-determinstic-finite-automaton-iiith/) and [Non-determininistic Finite Automata (DFA)](https://virtual-labs.github.io/exp-non-determinstic-finite-automaton-iiith/). 
 
@@ -24,7 +24,8 @@ A **Pushdown automata** (PDA for short) can be represented as a 6-tuple $ (Q, \S
 5. $ q_0 \in Q $ is the initial state 
 6. $ F \subseteq Q $ is the set of final states.
 
-![](images/PDA0.jpeg)
+<img src="images/PDA0.jpeg" alt="Pushdown Automaton" width="300">
+<!-- ![](images/PDA0.jpeg) -->
 
 Instantaneous Description shows how a PDA computes an input string and makes a decision to accept it or reject it. It is represented as a triple $ \delta(q, w, \alpha) $, where - 
 
@@ -49,7 +50,9 @@ This requires the following to be true:
 
 The following is a PDA for the language with the set of strings $ \{0^n, 1^n| n>0\} $. Here Z (or alternatively $ \perp $) denotes the empty stack and stack alphabet is $ \{X\} $.
 
-![PDA for the strings of the kind 0^n1^n](images/PDA1.jpeg)
+
+<img src="images/PDA1.jpeg" alt="Pushdown Automaton for the strings of the kind 0^n1^n" width="300">
+<!-- ![PDA for the strings of the kind 0^n1^n](images/PDA1.jpeg) -->
 
 
 The logic involved in designing this PDA - 
@@ -64,7 +67,9 @@ The logic involved in designing this PDA -
 <details><summary>Exercise 1: Design a pushdown automaton that accepts a language  $ \{ 0^m 1^m 0^n | m, n \geq 1 \} $.</summary>
 The solution to this builds on the previous example. 
 
-![PDA for the strings of the kind $ 0^m1^m0^n $](images/PDA2.jpeg)
+
+<img src="images/PDA0.jpeg" alt="Pushdown Automaton for the strings of the kind $ 0^m 1^m 0^n" width="300">
+<!-- ![PDA for the strings of the kind $ 0^m1^m0^n $](images/PDA2.jpeg) -->
 </details>
 
 
@@ -174,8 +179,8 @@ Design a pushdown automaton (PDA) that recognizes the language $ \{ww^Rw | $ whe
 >How about we add another stack? Would that help us solve this problem?
 
 
-## Related topics
-1. [Language acceptance by Deterministic Finite Automata](https://virtual-labs.github.io/exp-determinstic-finite-automaton-iiith/)
-2. [Non-determininistic Finite Automata (DFA)](https://virtual-labs.github.io/exp-non-determinstic-finite-automaton-iiith/)
-3. [Converting a NFA to a DFA](https://virtual-labs.github.io/exp-nfa-to-dfa-iiith/)
-4. [Converting a Regular Expression to NFA](https://virtual-labs.github.io/exp-converting-regular-expression-iiith/)
+<!-- ## Related topics -->
+<!-- 1. [Language acceptance by Deterministic Finite Automata](https://virtual-labs.github.io/exp-determinstic-finite-automaton-iiith/) -->
+<!-- 2. [Non-determininistic Finite Automata (DFA)](https://virtual-labs.github.io/exp-non-determinstic-finite-automaton-iiith/) -->
+<!-- 3. [Converting a NFA to a DFA](https://virtual-labs.github.io/exp-nfa-to-dfa-iiith/) -->
+<!-- 4. [Converting a Regular Expression to NFA](https://virtual-labs.github.io/exp-converting-regular-expression-iiith/) -->
