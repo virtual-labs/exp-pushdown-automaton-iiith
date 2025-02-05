@@ -88,7 +88,7 @@
     },
     "correctAnswer": "b",
     "difficulty": "beginner"
-  }
+  },
     {
       "question": "Can a PDFA accept palindromes?",
       "answers": {
