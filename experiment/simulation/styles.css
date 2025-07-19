@@ -1,0 +1,242 @@
+/* --- Modern DFA Lab Styles --- */
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f5f3ff;
+  min-height: 100vh;
+  color: #2d1e4a;
+}
+
+header {
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+  box-shadow: 0 8px 32px 0 rgba(124, 58, 237, 0.12);
+}
+
+.glass-morphism {
+  background: rgba(140, 90, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  box-shadow: 0 4px 24px 0 rgba(124, 58, 237, 0.08);
+}
+
+.dark-glass {
+  background: rgba(124, 58, 237, 0.18);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(124, 58, 237, 0.10);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.floating-card {
+  background: #ede9fe;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(124, 58, 237, 0.10);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.floating-card:hover {
+  box-shadow: 0 16px 48px 0 rgba(124, 58, 237, 0.16);
+}
+
+/* Multicolored Modern Buttons */
+.neu-button {
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(124, 58, 237, 0.10);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.neu-button.purple {
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+}
+.neu-button.green {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+}
+.neu-button.blue {
+  background: linear-gradient(135deg, #6366f1 0%, #3730a3 100%);
+}
+.neu-button.red {
+  background: linear-gradient(135deg, #f43f5e 0%, #be185d 100%);
+}
+.neu-button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 16px 0 rgba(124, 58, 237, 0.16);
+}
+.neu-button:active {
+  filter: brightness(0.95);
+  transform: scale(0.98);
+}
+
+.panel-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #7c3aed;
+  margin-bottom: 0.5rem;
+}
+
+#input_container {
+  background: rgba(140, 90, 255, 0.12);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  color: #2d1e4a;
+  font-size: 1.5rem;
+  text-align: center;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px 0 rgba(124, 58, 237, 0.04);
+}
+
+.input-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+#trace-container {
+  background: rgba(140, 90, 255, 0.10);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+  max-height: 15rem;
+}
+
+#stack_list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#stack_list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.10);
+}
+#stack_list li:last-child {
+  border-bottom: none;
+}
+
+.quick-guide-step {
+  background: rgba(140, 90, 255, 0.18);
+  border-radius: 1rem;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  color: #7c3aed;
+  font-weight: 500;
+  box-shadow: 0 2px 8px 0 rgba(124, 58, 237, 0.04);
+}
+.quick-guide-step .step-number {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.5rem auto;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+footer {
+  background: transparent;
+}
+footer .glass-morphism {
+  background: rgba(140,90,255,0.92);
+  color: #ede9fe;
+  font-weight: 500;
+}
+
+#canvas1 {
+  background: #ede9fe;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(124, 58, 237, 0.06);
+}
+
+@media (max-width: 900px) {
+  #main-panels {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Utility classes for button assignment */
+#change_dfa { /* blue */ }
+#change_input { /* green */ }
+#prev { /* purple */ }
+#next { /* red */ }
+
+/* Example: Assign multicolored buttons in your HTML like:
+<button class="neu-button blue">Change DFA</button>
+<button class="neu-button green">Change Input</button>
+<button class="neu-button purple">Previous</button>
+<button class="neu-button red">Next Step</button>
+*/
+
+/* DFA SVG Arrow Styling */
+.dfa-svg path,
+.dfa-svg line,
+.dfa-svg polyline {
+  stroke: #7c3aed;
+  stroke-width: 2.2;
+  marker-end: url(#arrowhead);
+  opacity: 0.85;
+  transition: stroke-width 0.2s, opacity 0.2s;
+}
+.dfa-svg path,
+.dfa-svg polyline {
+  fill: none;
+}
+.dfa-svg .arrow-label {
+  font-size: 1rem;
+  fill: #5b21b6;
+  font-weight: 600;
+  opacity: 0.95;
+}
+.dfa-svg .state-circle {
+  stroke: #7c3aed;
+  stroke-width: 2.5;
+  fill: #ede9fe;
+}
+.dfa-svg .state-circle.active {
+  stroke: #f59e42;
+  stroke-width: 3.5;
+}
+.dfa-svg .accept-state {
+  stroke: #22d3ee;
+  stroke-width: 3;
+}
+.dfa-svg .reject-state {
+  stroke: #f43f5e;
+  stroke-width: 3;
+}
+.dfa-svg .arrowhead {
+  fill: #7c3aed;
+  opacity: 0.85;
+}
+
+/* Make arrows smaller and less cluttered */
+.dfa-svg path,
+.dfa-svg line,
+.dfa-svg polyline {
+  stroke-width: 1.5;
+  opacity: 0.7;
+}
+.dfa-svg marker {
+  markerWidth: 7;
+  markerHeight: 7;
+}
