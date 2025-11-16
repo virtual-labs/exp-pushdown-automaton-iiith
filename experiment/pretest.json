@@ -24,25 +24,25 @@
 	    "difficulty": "beginner"
 	},
 	{
-	    "question": "Which of the following is NOT a closure property of regular languages?",
+	    "question": "Which of the following statements about memory in finite automata is correct?",
 	    "answers": {
-		"a": "Union",
-		"b": "Concatenation",
-		"c": "Intersection",
-		"d": "Reverse"
+		"a": "Finite automata have unlimited memory",
+		"b": "Finite automata can only remember information through their current state",
+		"c": "Finite automata can use a stack to store information",
+		"d": "Finite automata can count arbitrarily large numbers"
 	    },
-	    "correctAnswer": "c",
+	    "correctAnswer": "b",
 	    "difficulty": "intermediate"
 	},
 	{
-	    "question": "Which of the following is an example of a regular language?",
+	    "question": "Why can't a finite automaton recognize the language L = { a^n b^n | n ≥ 0 }?",
 	    "answers": {
-		"a": "L = { a^n b^n | n ≥ 0 }",
-		"b": "L = { w w^R | w ∈ {a, b}* }",
-		"c": "L = { a^m b^n | m, n ≥ 0 }",
-		"d": "L = { a^n b^n c^n | n ≥ 0 }"
+		"a": "Because it needs to count the number of a's and b's",
+		"b": "Because it has too many states",
+		"c": "Because the alphabet is too large",
+		"d": "Because finite automata can only process strings from left to right"
 	    },
-	    "correctAnswer": "c",
+	    "correctAnswer": "a",
 	    "difficulty": "intermediate"
 	},
 	{
@@ -68,15 +68,15 @@
 	    "difficulty": "advanced"
 	},
 	{
-	    "question": "Which of the following operations always result in a regular language when applied to two regular languages?",
+	    "question": "What type of additional memory structure do pushdown automata use?",
 	    "answers": {
-		"a": "Union and complement",
-		"b": "Intersection and exponentiation",
-		"c": "Concatenation and intersection",
-		"d": "Complement and context-free closure"
+		"a": "Queue",
+		"b": "Stack",
+		"c": "Array",
+		"d": "Hash table"
 	    },
-	    "correctAnswer": "a",
-	    "difficulty": "intermediate"
+	    "correctAnswer": "b",
+	    "difficulty": "beginner"
 	},
 	{
 	    "question": "If a language is regular, which type of automaton can always recognize it?",

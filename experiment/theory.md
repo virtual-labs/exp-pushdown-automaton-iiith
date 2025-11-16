@@ -84,14 +84,58 @@ The solution to this builds on the previous example.
     6. $ F = \{q_4\} $
 </details> 
 
-<details><summary> Exercise 3: $ G = { a^i b^j c^k | i, j, k \geq 0; i + j = k\} $</summary>
-    
-    1. $ Q = \{q_1, q_2, q_3, q_4, q_5\} $
-    2. $ \sum = \{a, b, c\} $
-    3. $ \Gamma = \{x, \$\} $
-    4. table for the transition function
-    5. $ q_1 $ is the start state
-    6. $ F = \{q_5\} $
+<details><summary> Exercise 3: $ L = \{ a^i b^j c^k | i, j, k \geq 0 \text{ and } i + j = k\} $</summary>
+
+**Design a PDA that accepts the language where the number of c's equals the sum of a's and b's, with all a's before all b's before all c's.**
+
+**Solution:**
+
+**Key Requirements:**
+1. The string must have the form $ a^i b^j c^k $ (strict ordering)
+2. The constraint $ i + j = k $ must hold
+3. All values $ i, j, k \geq 0 $ (including the empty string $ \varepsilon $)
+
+**The PDA components:**
+1. $ Q = \{q_0, q_1, q_2, q_3\} $
+2. $ \Sigma = \{a, b, c\} $
+3. $ \Gamma = \{X, Z\} $ (X for counting, Z for bottom of stack)
+4. $ q_0 $ is the start state
+5. $ F = \{q_3\} $
+
+**Transition function $ \delta $:**
+
+The logic enforces ordering by using separate states:
+- State $ q_0 $: Read all `a`'s, pushing X for each
+- State $ q_1 $: Read all `b`'s, pushing X for each
+- State $ q_2 $: Read all `c`'s, popping X for each
+- State $ q_3 $: Final accepting state
+
+| Current State | Input | Stack Top | Next State | Stack Operation | Description |
+|:-------------:|:-----:|:---------:|:----------:|:---------------:|:------------------------------------------------|
+| $ q_0 $ | a | Z | $ q_0 $ | XZ | Read first `a` |
+| $ q_0 $ | a | X | $ q_0 $ | XX | Read subsequent `a`'s |
+| $ q_0 $ | b | Z | $ q_1 $ | XZ | Transition to `b`'s, push X for first `b` |
+| $ q_0 $ | b | X | $ q_1 $ | XX | Transition to `b`'s, push X for first `b` |
+| $ q_1 $ | b | X | $ q_1 $ | XX | Read subsequent `b`'s |
+| $ q_0 $ | c | X | $ q_2 $ | $ \varepsilon $ | Transition to `c`'s (if no `b`'s), pop X |
+| $ q_1 $ | c | X | $ q_2 $ | $ \varepsilon $ | Transition to `c`'s (after `b`'s), pop X |
+| $ q_2 $ | c | X | $ q_2 $ | $ \varepsilon $ | Read subsequent `c`'s, pop X |
+| $ q_0 $ | $ \varepsilon $ | Z | $ q_3 $ | Z | Accept empty string and cases where $ i+j=0, k=0 $ |
+| $ q_2 $ | $ \varepsilon $ | Z | $ q_3 $ | Z | Final acceptance after all `c`'s are read |
+
+**Example 1:** For the string "aabccc" ($ i=2, j=1, k=3 $):
+1. State $ q_0 $, read 'a' → push X → stack: XZ
+2. State $ q_0 $, read 'a' → push X → stack: XXZ
+3. State $ q_0 $, read 'b' → push X, move to $ q_1 $ → stack: XXXZ
+4. State $ q_1 $, read 'c' → pop X, move to $ q_2 $ → stack: XXZ
+5. State $ q_2 $, read 'c' → pop X → stack: XZ
+6. State $ q_2 $, read 'c' → pop X → stack: Z
+7. State $ q_2 $, $ \varepsilon $-transition to $ q_3 $ → **Accept**
+
+**Example 2:** The string "bbaacccc" would be **rejected** because after reading the first 'b', the PDA transitions to state $ q_1 $. In state $ q_1 $, there is no transition defined for reading 'a', so the PDA halts and rejects.
+
+**Example 3:** The empty string $ \varepsilon $ is **accepted** via the $ \varepsilon $-transition from $ q_0 $ to $ q_3 $ (since $ 0+0=0 $).
+
 </details>    
 
 
