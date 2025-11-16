@@ -1,4 +1,4 @@
-## Introduction
+### Introduction
 
 Before we start with this experiment, we recommend the reader gain an understanding of [Determininistic Finite Automata (DFA)](https://virtual-labs.github.io/exp-determinstic-finite-automaton-iiith/) and [Non-determininistic Finite Automata (DFA)](https://virtual-labs.github.io/exp-non-determinstic-finite-automaton-iiith/). 
 
@@ -15,24 +15,25 @@ Pushdown automata is to context-free languages, what NFA’s and DFA’s are to 
 ### Formal definition
 Now that we are familiar with the basics of pushdown automata, here is a formal definition.
 
-A **Pushdown automata** (PDA for short) can be represented as a 6-tuple (Q, Σ, Γ, δ, q0, F ), where 
+A **Pushdown automata** (PDA for short) can be represented as a 6-tuple $ (Q, \Sigma, \Gamma, \delta, q_0, F ) $, where 
 
-1. Q is the set of states
-2. Σ is the input symbols
-3. Γ is the stack alphabet/pushdown symbols
-4. δ is the transition function that maps Q x {Σ ∪ ∈} x Γ into Q x Γ*
-5. q_0 ∈ Q is the initial state 
-6. F ⊆ Q is the set of final states.
+1. $ Q $ is the set of states
+2. $ \Sigma $ is the input symbols
+3. $ \Gamma $ is the stack alphabet/pushdown symbols
+4. $ \delta $ is the transition function that maps $Q x {\Sigma  \cup \varepsilon} x \Gamma $ into $ Q x \Gamma* $
+5. $ q_0 \in Q $ is the initial state 
+6. $ F \subseteq Q $ is the set of final states.
 
-![](images/PDA0.jpeg)
+<img src="images/PDA0.jpeg" alt="Pushdown Automaton" width="700">
+<!-- ![](images/PDA0.jpeg) -->
 
-Instantaneous Description shows how a PDA computes an input string and makes a decision to accept it or reject it. It is represented as a triple δ(q, w, α), where - 
+Instantaneous Description shows how a PDA computes an input string and makes a decision to accept it or reject it. It is represented as a triple $ \delta(q, w, \alpha) $, where - 
 
 1. q describes the current state
 2. w describes the remaining input 
-3. α describes the current contents of the stack
+3. $ \alpha $ describes the current contents of the stack
 
-A move from one instantaneous description to another is denoted by the symbol ‘⊢’. This is known as the turnstile notation. 
+A move from one instantaneous description to another is denoted by the symbol $ \vdash $. This is known as the turnstile notation. 
 
 ## PDA and Context-Free Languages
 
@@ -47,46 +48,94 @@ This requires the following to be true:
 
 
 
-The following is a PDA for the language with the set of strings $\{0^n, 1^n| n>0\}$. Here Z (or alternatively $\perp$) denotes the empty stack and stack alphabet is $\{X\}$.
+The following is a PDA for the language with the set of strings $ \{0^n, 1^n| n>0\} $. Here Z (or alternatively $ \perp $) denotes the empty stack and stack alphabet is $ \{X\} $.
 
-![PDA for the strings of the kind 0^n1^n](images/PDA1.jpeg)
+
+<img src="images/PDA1.jpeg" alt="Pushdown Automaton for the strings of the kind 0^n1^n" width="700">
+<!-- ![PDA for the strings of the kind 0^n1^n](images/PDA1.jpeg) -->
 
 
 The logic involved in designing this PDA - 
 
-1. $δ(q_0,0,Z)={(q_0,XZ)}$ - push an X onto the stack for the first 0 in the input.
-2. $δ(q_0,0,X)={(q_0,XX)}$ - push an X onto the stack for each subsequent 0 in the input.
-3. $δ(q_0,1,X)={(q_1,ϵ)}$ - at the first 1, go to state *p* and pop one *X.*
-4. $δ(q_1,1,X)={(q_1,ϵ)}$ - Pop an *X* on each subsequent 1.
-5. $δ(q_1,ϵ,Z)={(q_2,Z)}$ - Bottom of the stack.
+1. $ \delta(q_0,0,Z)= \{(q_0,XZ)\} $ - push an X onto the stack for the first 0 in the input.
+2. $ \delta(q_0,0,X)=\{(q_0,XX)\} $ - push an X onto the stack for each subsequent 0 in the input.
+3. $ \delta(q_0,1,X)=\{(q_1,\varepsilon) \} $ - at the first 1, go to state *p* and pop one *X.*
+4. $ \delta(q_1,1,X)=\{(q_1,\varepsilon)\} $ - Pop an *X* on each subsequent 1.
+5. $ \delta(q_1,\varepsilon,Z)=\{(q_2,Z)\} $ - Bottom of the stack.
 
 
-<details><summary>Exercise 1: Design a pushdown automaton that accepts a language  { $0^m 1^m 0^n | m, n>=1$}.</summary>
+<details><summary>Exercise 1: Design a pushdown automaton that accepts a language  $ \{ 0^m 1^m 0^n | m, n \geq 1 \} $.</summary>
 The solution to this builds on the previous example. 
 
-![PDA for the strings of the kind 0^m1^m0^n](images/PDA2.jpeg)
+
+<img src="images/PDA0.jpeg" alt="Pushdown Automaton for the strings of the kind $ 0^m 1^m 0^n" width="700">
+<!-- ![PDA for the strings of the kind $ 0^m1^m0^n $](images/PDA2.jpeg) -->
 </details>
 
 
 
-<details><summary>Exercise 2: $G = \{ w ∈ \{0, 1\}^∗ | w = w^R;   w = 2k+1,  k >= 0\}$.</summary>
+<details><summary>Exercise 2: $ G = \{ w \in \{0, 1\}^* | w = w^R;   w = 2k+1,  k \geq 0\} $.</summary>
 
-    1. $Q = \{q_1, q_2, q_3, q_4\}$
-    2. $\sum = \{0, 1\}$
-    3. $\Gamma = \{0,1\}$
+    1. $ Q = \{q_1, q_2, q_3, q_4\} $
+    2. $ \sum = \{0, 1\} $
+    3. $ \Gamma = \{0,1\} $
     4. table for the transition function
-    5. q1 is the start state
-    6. $F = \{q4\}$
+    5. $ q_1 $ is the start state
+    6. $ F = \{q_4\} $
 </details> 
 
-<details><summary> Exercise 3: $G = { a^i b^j c^k | i, j, k \geq 0; i + j = k\}$</summary>
-    
-    1. $Q = \{q_1, q_2, q_3, q_4, q_5\}$
-    2. $\sum = \{a, b, c\}$
-    3. $\Gamma = \{x, \$\}$
-    4. table for the transition function
-    5. q1 is the start state
-    6. $F = \{q5\}$
+<details><summary> Exercise 3: $ L = \{ a^i b^j c^k | i, j, k \geq 0 \text{ and } i + j = k\} $</summary>
+
+**Design a PDA that accepts the language where the number of c's equals the sum of a's and b's, with all a's before all b's before all c's.**
+
+**Solution:**
+
+**Key Requirements:**
+1. The string must have the form $ a^i b^j c^k $ (strict ordering)
+2. The constraint $ i + j = k $ must hold
+3. All values $ i, j, k \geq 0 $ (including the empty string $ \varepsilon $)
+
+**The PDA components:**
+1. $ Q = \{q_0, q_1, q_2, q_3\} $
+2. $ \Sigma = \{a, b, c\} $
+3. $ \Gamma = \{X, Z\} $ (X for counting, Z for bottom of stack)
+4. $ q_0 $ is the start state
+5. $ F = \{q_3\} $
+
+**Transition function $ \delta $:**
+
+The logic enforces ordering by using separate states:
+- State $ q_0 $: Read all `a`'s, pushing X for each
+- State $ q_1 $: Read all `b`'s, pushing X for each
+- State $ q_2 $: Read all `c`'s, popping X for each
+- State $ q_3 $: Final accepting state
+
+| Current State | Input | Stack Top | Next State | Stack Operation | Description |
+|:-------------:|:-----:|:---------:|:----------:|:---------------:|:------------------------------------------------|
+| $ q_0 $ | a | Z | $ q_0 $ | XZ | Read first `a` |
+| $ q_0 $ | a | X | $ q_0 $ | XX | Read subsequent `a`'s |
+| $ q_0 $ | b | Z | $ q_1 $ | XZ | Transition to `b`'s, push X for first `b` |
+| $ q_0 $ | b | X | $ q_1 $ | XX | Transition to `b`'s, push X for first `b` |
+| $ q_1 $ | b | X | $ q_1 $ | XX | Read subsequent `b`'s |
+| $ q_0 $ | c | X | $ q_2 $ | $ \varepsilon $ | Transition to `c`'s (if no `b`'s), pop X |
+| $ q_1 $ | c | X | $ q_2 $ | $ \varepsilon $ | Transition to `c`'s (after `b`'s), pop X |
+| $ q_2 $ | c | X | $ q_2 $ | $ \varepsilon $ | Read subsequent `c`'s, pop X |
+| $ q_0 $ | $ \varepsilon $ | Z | $ q_3 $ | Z | Accept empty string and cases where $ i+j=0, k=0 $ |
+| $ q_2 $ | $ \varepsilon $ | Z | $ q_3 $ | Z | Final acceptance after all `c`'s are read |
+
+**Example 1:** For the string "aabccc" ($ i=2, j=1, k=3 $):
+1. State $ q_0 $, read 'a' → push X → stack: XZ
+2. State $ q_0 $, read 'a' → push X → stack: XXZ
+3. State $ q_0 $, read 'b' → push X, move to $ q_1 $ → stack: XXXZ
+4. State $ q_1 $, read 'c' → pop X, move to $ q_2 $ → stack: XXZ
+5. State $ q_2 $, read 'c' → pop X → stack: XZ
+6. State $ q_2 $, read 'c' → pop X → stack: Z
+7. State $ q_2 $, $ \varepsilon $-transition to $ q_3 $ → **Accept**
+
+**Example 2:** The string "bbaacccc" would be **rejected** because after reading the first 'b', the PDA transitions to state $ q_1 $. In state $ q_1 $, there is no transition defined for reading 'a', so the PDA halts and rejects.
+
+**Example 3:** The empty string $ \varepsilon $ is **accepted** via the $ \varepsilon $-transition from $ q_0 $ to $ q_3 $ (since $ 0+0=0 $).
+
 </details>    
 
 
@@ -96,7 +145,7 @@ The solution to this builds on the previous example.
 <summary>
 1.  What is a pushdown automaton (PDA)?</summary>
 
-     A pushdown automaton is a finite-state machine with an additional stack that can be used to store and retrieve symbols. It is used to recognize context-free languages.
+    A pushdown automaton is a finite-state machine with an additional stack that can be used to store and retrieve symbols. It is used to recognize context-free languages.
 </details>
 
 <details>
@@ -147,7 +196,7 @@ A7: No, a PDA can only recognize context-free languages. There are languages tha
 
 <details>
 <summary>
-8. What is the relationship between PDAs and context-free grammars (CFG)?
+8. What is the relationship between PDAs and context-free grammars (CFG)? </summary>
     PDAs and CFGs are equivalent in terms of language recognition. That is, for every CFG, there exists a PDA that recognizes the same language, and vice versa.
 
 </details>
@@ -170,5 +219,12 @@ A7: No, a PDA can only recognize context-free languages. There are languages tha
 
 # Food for Thought
 
-Design a pushdown automaton (PDA) that recognizes the language ${ww^Rw | w is a string of 0s and 1s}$. 
+Design a pushdown automaton (PDA) that recognizes the language $ \{ww^Rw | $ where w is a string of 0s and 1s $ \} $. 
 >How about we add another stack? Would that help us solve this problem?
+
+
+<!-- ## Related topics -->
+<!-- 1. [Language acceptance by Deterministic Finite Automata](https://virtual-labs.github.io/exp-determinstic-finite-automaton-iiith/) -->
+<!-- 2. [Non-determininistic Finite Automata (DFA)](https://virtual-labs.github.io/exp-non-determinstic-finite-automaton-iiith/) -->
+<!-- 3. [Converting a NFA to a DFA](https://virtual-labs.github.io/exp-nfa-to-dfa-iiith/) -->
+<!-- 4. [Converting a Regular Expression to NFA](https://virtual-labs.github.io/exp-converting-regular-expression-iiith/) -->

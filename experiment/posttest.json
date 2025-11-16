@@ -1,38 +1,131 @@
 {
   "version": 2.0,
-  "questions": [
+    "questions": [
+  {
+    "question": "Which type of language is recognized by a Pushdown Automaton (PDA)?",
+    "answers": {
+      "a": "Regular",
+      "b": "Context-Free",
+      "c": "Context-Sensitive",
+      "d": "Unrestricted"
+    },
+    "correctAnswer": "b",
+    "difficulty": "beginner"
+  },
+  {
+    "question": "Which data structure is used by a PDA to store additional information?",
+    "answers": {
+      "a": "Queue",
+      "b": "Stack",
+      "c": "Linked List",
+      "d": "Array"
+    },
+    "correctAnswer": "b",
+    "difficulty": "beginner"
+  },
+  {
+    "question": "A PDA accepts a string if:",
+    "answers": {
+      "a": "It reaches a final state with non-empty stack",
+      "b": "It consumes the entire input and reaches a final state and/or has an empty stack",
+      "c": "It has at least one transition defined for every state",
+      "d": "The stack contains only the initial symbol"
+    },
+    "correctAnswer": "b",
+    "difficulty": "beginner"
+  },
+  {
+    "question": "In a PDA transition δ(q, a, X) = (p, α), what does each component represent?",
+    "answers": {
+      "a": "q is next state, a is stack symbol, X is input, p is current state, α is new input",
+      "b": "q is current state, a is input symbol, X is top of stack, p is next state, α is stack replacement",
+      "c": "q is initial state, a is final symbol, X is empty stack, p is accepting state, α is input string",
+      "d": "q is stack top, a is next state, X is current state, p is input symbol, α is output"
+    },
+    "correctAnswer": "b",
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "What is the difference between a DFA and a PDA?",
+    "answers": {
+      "a": "A PDA uses a stack, while a DFA does not",
+      "b": "A DFA recognizes context-free languages, while a PDA recognizes regular languages",
+      "c": "A PDA can only recognize finite languages",
+      "d": "A DFA can use a stack, while a PDA cannot"
+    },
+    "correctAnswer": "a",
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "What is an epsilon (ε) transition in a PDA?",
+    "answers": {
+      "a": "A transition that erases the entire stack",
+      "b": "A transition that occurs without reading any input symbol",
+      "c": "A transition that only works when the stack is empty",
+      "d": "A transition that rejects the input string"
+    },
+    "correctAnswer": "b",
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "Which of the following languages can be recognized by a PDA?",
+    "answers": {
+      "a": "L = { a^n b^n c^n | n ≥ 0 }",
+      "b": "L = { a^n b^n | n ≥ 0 }",
+      "c": "L = { ww | w ∈ {a,b}* }",
+      "d": "All regular languages only"
+    },
+    "correctAnswer": "b",
+    "difficulty": "advanced"
+  },
+  {
+    "question": "Which of the following symbols is commonly used to represent the empty stack in PDA computations?",
+    "answers": {
+      "a": "ε (epsilon)",
+      "b": "Z0",
+      "c": "#",
+      "d": "λ (lambda)"
+    },
+    "correctAnswer": "b",
+    "difficulty": "beginner"
+  },
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Can a PDFA accept palindromes?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "yes",
+        "b": "no"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": ""
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Does the computation power increase by adding another stack?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "yes",
+        "b": "no"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": ""
       },
-      "correctAnswer": "c",
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Do stack symbols and alphabet set need to be the same?",
+      "answers": {
+        "a": "yes",
+        "b": "no"
+      },
+      "explanations": {
+        "a": "",
+        "b": ""
+      },
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]
