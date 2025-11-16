@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PDA String Acceptance - Automata Theory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="mobile-detection.js"></script>
+  <script src="script.js" defer></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#6366F1', 
+            accent: '#10B981',
+            danger: '#EF4444',
+            neutral: '#F3F4F6',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fff;
+      min-height: 100vh;
+      width: 100vw;
+      max-width: 100vw;
+      overflow-x: hidden;
+      height: 100vh;
+    }
+    .glass-morphism {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    
+    .dark-glass {
+      background: rgba(243, 244, 246, 0.7);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #3B82F6, #6366F1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .floating-card {
+      transform: translateY(0);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .floating-card:hover {
+      transform: translateY(-0.25rem);
+      box-shadow: 0 1.25rem 2.5rem rgba(59, 130, 246, 0.08);
+    }
+    
+    .neu-button {
+      background: #fff;
+      color: #374151;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 0.125rem 0.5rem rgba(59, 130, 246, 0.06);
+      transition: all 0.2s ease;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem !important;
+      min-width: 110px;
+      min-height: 2.5rem;
+      border-radius: 0.9rem !important;
+    }
+    .neu-button.primary {
+      background: #3B82F6;
+      color: #fff;
+      border: none;
+    }
+    .neu-button.secondary {
+      background: #6366F1;
+      color: #fff;
+      border: none;
+    }
+    .neu-button.accent {
+      background: #10B981;
+      color: #fff;
+      border: none;
+    }
+    .neu-button.danger {
+      background: #EF4444;
+      color: #fff;
+      border: none;
+    }
+    .neu-button:hover {
+      filter: brightness(0.95);
+      box-shadow: 0 0.25rem 1rem rgba(59, 130, 246, 0.10);
+    }
+    .neu-button:active {
+      filter: brightness(0.90);
+    }
+    .neu-button:disabled {
+      background: #e5e7eb !important;
+      color: #9ca3af !important;
+      border-color: #e5e7eb !important;
+      cursor: not-allowed !important;
+      filter: grayscale(0.5) brightness(0.97);
+      box-shadow: none !important;
+    }
+
+    .transition-rule {
+      background: #fff;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.5rem;
+      padding: 0.4rem 0.7rem; /* smaller padding */
+      margin: 0.15rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.95rem; /* smaller font */
+      min-width: 0;
+      min-height: 0;
+      box-shadow: none;
+    }
+
+    .transition-rule:hover {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+
+    .transition-rule.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: #f3f4f6;
+    }
+
+    .transition-rule.selected {
+      border-color: #10b981;
+      background: #d1fae5;
+    }
+
+    .stack-item {
+      background: #e9d5ff;
+      border: 2px solid #8b5cf6;
+      border-radius: 0.5rem;
+      padding: 0.25rem 0.5rem; /* smaller padding */
+      margin: 0.15rem 0;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1rem; /* smaller font */
+      min-width: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Stack container with scrolling */
+    .stack-display-container {
+      max-height: 250px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 #f1f5f9;
+      min-height: 150px;
+      position: relative;
+    }
+    
+    .stack-display-container::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .stack-display-container::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 3px;
+    }
+    
+    .stack-display-container::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    
+    .stack-display-container::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Center the stack visually */
+    #stack-canvas {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Use the parent container to center stack content */
+    .stack-container-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1rem 0;
+    }
+
+    /* Input buffer character highlighting */
+    .input-char {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      margin: 0.125rem;
+      border-radius: 0.375rem;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      font-size: 1.1rem;
+      background: #f3f4f6;
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+    }
+
+    .input-char.current {
+      background: #ddd6fe;
+      border-color: #8b5cf6;
+      color: #6b46c1;
+      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+      transform: scale(1.1);
+    }
+
+    .input-char.processed {
+      background: #d1fae5;
+      border-color: #10b981;
+      color: #059669;
+      opacity: 0.8;
+    }
+
+    .input-char.unprocessed {
+      background: #f3f4f6;
+      border-color: #e5e7eb;
+      color: #6b7280;
+    }
+
+    body, .text-gray-800, .text-gray-700, .text-black, .panel-title, h2, h3, span, p, label, .font-semibold, .font-medium, .font-bold, .font-mono, .font-sans, .font-inter {
+      color: #18181b !important;
+    }
+    
+    .neu-button.primary, .neu-button.secondary, .neu-button.accent, .neu-button.danger {
+      color: #fff !important;
+    }
+
+    /* Transitions container scrolling */
+    #transitions-container {
+      max-height: 250px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 #f1f5f9;
+    }
+    
+    #transitions-container::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    #transitions-container::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 3px;
+    }
+    
+    #transitions-container::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    
+    #transitions-container::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    @media (max-width: 768px) {
+      .floating-card, .glass-morphism, .dark-glass {
+        padding: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .input-buffer {
+        font-size: 1.2rem !important;
+      }
+      
+      #transitions-container {
+        max-height: 200px;
+      }
+      
+      .stack-display-container {
+        max-height: 200px;
+        min-height: 100px;
+      }
+    }
+  </style>
+  <style>
+    /* Custom dropdown enhancements */
+    .custom-dropdown {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%236366F1" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7.293 7.293a1 1 0 011.414 0L10 8.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1.25em 1.25em;
+      padding-right: 2.5rem !important;
+      cursor: pointer;
+      min-height: 2.5rem;
+      font-weight: 500;
+      transition: box-shadow 0.2s;
+    }
+    .custom-dropdown:focus {
+      box-shadow: 0 0 0 2px #3B82F6;
+      border-color: #3B82F6;
+    }
+    .custom-dropdown:hover {
+      border-color: #6366F1;
+    }
+  </style>
+</head>
+<body class="text-gray-800 overflow-x-hidden bg-white">
+
+  <!-- Quick Guide Panel -->
+  <div class="floating-card glass-morphism rounded-2xl p-4 shadow-lg max-w-7xl mx-auto mb-4">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-lg font-semibold text-gray-800 flex items-center">
+        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zm-2 5a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+        </svg>
+        Pushdown Automaton - String Acceptance
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="dark-glass rounded-xl p-3 text-center">
+        <div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center mx-auto mb-2">
+          <span class="text-white font-bold text-xs">1</span>
+        </div>
+        <p class="text-gray-700 text-xs">Select a PDA and input string</p>
+      </div>
+      <div class="dark-glass rounded-xl p-3 text-center">
+        <div class="w-6 h-6 bg-secondary rounded-full flex items-center justify-center mx-auto mb-2">
+          <span class="text-white font-bold text-xs">2</span>
+        </div>
+        <p class="text-gray-700 text-xs">Choose valid transitions based on current state</p>
+      </div>
+      <div class="dark-glass rounded-xl p-3 text-center">
+        <div class="w-6 h-6 bg-accent rounded-full flex items-center justify-center mx-auto mb-2">
+          <span class="text-white font-bold text-xs">3</span>
+        </div>
+        <p class="text-gray-700 text-xs">Watch the stack operations</p>
+      </div>
+      <div class="dark-glass rounded-xl p-3 text-center">
+        <div class="w-6 h-6 bg-danger rounded-full flex items-center justify-center mx-auto mb-2">
+          <span class="text-white font-bold text-xs">4</span>
+        </div>
+        <p class="text-gray-700 text-xs">Reach accept state to succeed</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <div class="max-w-7xl mx-auto px-4 pb-16 flex flex-col lg:flex-row gap-8 items-stretch min-h-[70vh]">
+    <!-- Primary Control Panel and PDA Visualization -->
+    <div class="flex-1 flex flex-col gap-6 justify-between min-w-0">
+      <!-- Input & Controls Panel -->
+      <div class="floating-card glass-morphism rounded-3xl p-4 mb-6 shadow-xl flex flex-col gap-3">
+        <div class="flex flex-col gap-3">
+          <!-- PDA Selection and Input -->
+          <div class="dark-glass rounded-2xl p-3">
+            <h3 class="text-base font-semibold text-gray-800 mb-3 flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+              </svg>
+              PDA Configuration
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Select PDA:</label>
+                <select id="pda-select" class="w-full p-2 border border-gray-300 rounded-xl text-sm shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all bg-white custom-dropdown" onchange="pdaChanged()">
+                  <option value="0">Balanced Parentheses (0^n 1^n)</option>
+                  <option value="1">Palindrome Checker</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Select Input:</label>
+                <select id="input-select" class="w-full p-2 border border-gray-300 rounded-xl text-sm shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all bg-white custom-dropdown" onchange="inputChanged()">
+                  <!-- Options will be populated dynamically -->
+                </select>
+              </div>
+            </div>
+            <div class="mt-3">
+              <p id="pda-description" class="text-sm text-gray-600"></p>
+            </div>
+          </div>
+
+          <!-- Input Buffer Display -->
+          <div class="dark-glass rounded-2xl p-3">
+            <h3 class="text-base font-semibold text-gray-800 mb-2 flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path>
+              </svg>
+              Input Buffer
+            </h3>
+            <div id="input-buffer" class="input-buffer">
+              <!-- Input characters will be displayed here -->
+            </div>
+
+          </div>
+
+          <!-- Control Buttons -->
+          <div class="flex flex-wrap gap-2 justify-center">
+            <button onclick="startSimulation()" class="neu-button primary">
+              <svg class="w-4 h-4 mr-1 inline" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+              </svg>
+              Start
+            </button>
+            <button onclick="resetSimulation()" class="neu-button danger">
+              <svg class="w-4 h-4 mr-1 inline" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"></path>
+              </svg>
+              Reset
+            </button>
+            <button onclick="stepBackward()" id="step-back-btn" disabled class="neu-button secondary">
+              <svg class="w-4 h-4 mr-1 inline" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              Step Back
+            </button>
+          </div>
+        </div>
+
+        <!-- PDA Visualization Panel -->
+        <div class="dark-glass rounded-2xl p-3 flex-1 flex flex-col justify-between min-h-[300px] mt-2">
+          <h3 class="text-base font-semibold text-gray-800 mb-2 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            Pushdown Automaton
+          </h3>
+          <div class="bg-neutral rounded-xl p-2 backdrop-blur-sm flex-1 flex items-center justify-center min-h-[280px]">
+            <svg id="pda-canvas" width="800" height="300"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stack and Transitions Sidebar -->
+    <div class="lg:w-96 w-full mt-6 lg:mt-0 flex-shrink-0 flex flex-col gap-4 h-full">
+      <!-- Stack Display -->
+      <div class="dark-glass rounded-2xl p-4 flex-1 flex flex-col">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z"></path>
+            <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z"></path>
+          </svg>
+          Stack
+        </h3>
+        <div class="bg-neutral rounded-xl p-3 stack-display-container flex-1" style="position:relative;">
+          <svg id="stack-canvas" width="100" height="200" style="display:block; margin:auto;"></svg>
+        </div>
+        <div class="mt-2 text-sm text-gray-600">
+          <p>Top of Stack: <span id="stack-top" class="font-mono font-bold">Z (bottom)</span></p>
+        </div>
+      </div>
+
+      <!-- Available Transitions -->
+      <div class="dark-glass rounded-2xl p-4 flex-1 flex flex-col">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+          </svg>
+          Available Transitions
+        </h3>
+        <div id="transitions-container" class="space-y-2 flex-1">
+          <p class="text-gray-500 text-center text-sm">Start simulation to see available transitions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ...existing code...
+    function renderStack(stack) {
+      const container = document.querySelector('.stack-display-container');
+      const svg = document.getElementById('stack-canvas');
+      const maxHeight = container.clientHeight || 250;
+      const itemHeight = 32; // px, default
+      const padding = 8; // px, top and bottom
+      let visibleHeight = stack.length * itemHeight + padding * 2;
+      let scale = 1;
+      if (visibleHeight > maxHeight) {
+        scale = maxHeight / visibleHeight;
+      }
+      svg.setAttribute('height', Math.max(visibleHeight * scale, 100));
+      svg.innerHTML = '';
+      stack.forEach((item, i) => {
+        const y = padding * scale + i * itemHeight * scale;
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', 10);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', 80);
+        rect.setAttribute('height', itemHeight * scale - 2);
+        rect.setAttribute('rx', 8 * scale);
+        rect.setAttribute('fill', '#e9d5ff');
+        rect.setAttribute('stroke', '#8b5cf6');
+        rect.setAttribute('stroke-width', 2);
+        svg.appendChild(rect);
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', 50);
+        text.setAttribute('y', y + (itemHeight * scale) / 2 + 5 * scale);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('font-size', 18 * scale);
+        text.setAttribute('font-family', 'Courier New, monospace');
+        text.setAttribute('font-weight', 'bold');
+        text.setAttribute('fill', '#6d28d9');
+        text.textContent = item;
+        svg.appendChild(text);
+      });
+    }
+
+  </script>
+<script src="../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>

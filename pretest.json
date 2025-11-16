@@ -1,0 +1,94 @@
+{
+    "version": 2.0,
+    "questions": [
+	{
+	    "question": "Which of the following best defines a regular language?",
+	    "answers": {
+		"a": "A language that can be recognized by a pushdown automaton",
+		"b": "A language that can be recognized by a finite automaton",
+		"c": "A language that requires a stack for recognition",
+		"d": "A language that can only be recognized by a Turing machine"
+	    },
+	    "correctAnswer": "b",
+	    "difficulty": "beginner"
+	},
+	{
+	    "question": "Which formalism can be used to describe all regular languages?",
+	    "answers": {
+		"a": "Context-free grammar",
+		"b": "Regular expressions",
+		"c": "Turing machines",
+		"d": "Lambda calculus"
+	    },
+	    "correctAnswer": "b",
+	    "difficulty": "beginner"
+	},
+	{
+	    "question": "Which of the following statements about memory in finite automata is correct?",
+	    "answers": {
+		"a": "Finite automata have unlimited memory",
+		"b": "Finite automata can only remember information through their current state",
+		"c": "Finite automata can use a stack to store information",
+		"d": "Finite automata can count arbitrarily large numbers"
+	    },
+	    "correctAnswer": "b",
+	    "difficulty": "intermediate"
+	},
+	{
+	    "question": "Why can't a finite automaton recognize the language L = { a^n b^n | n ≥ 0 }?",
+	    "answers": {
+		"a": "Because it needs to count the number of a's and b's",
+		"b": "Because it has too many states",
+		"c": "Because the alphabet is too large",
+		"d": "Because finite automata can only process strings from left to right"
+	    },
+	    "correctAnswer": "a",
+	    "difficulty": "intermediate"
+	},
+	{
+	    "question": "Which of the following statements about regular languages is true?",
+	    "answers": {
+		"a": "Every regular language can be recognized by a DFA",
+		"b": "Every regular language requires a PDA for recognition",
+		"c": "Regular languages can express nested dependencies",
+		"d": "Regular languages are a superset of context-free languages"
+	    },
+	    "correctAnswer": "a",
+	    "difficulty": "beginner"
+	},
+	{
+	    "question": "The pumping lemma is used to:",
+	    "answers": {
+		"a": "Prove that a language is regular",
+		"b": "Convert an NFA to a DFA",
+		"c": "Show that a language is not regular",
+		"d": "Generate a regular expression"
+	    },
+	    "correctAnswer": "c",
+	    "difficulty": "advanced"
+	},
+	{
+	    "question": "What type of additional memory structure do pushdown automata use?",
+	    "answers": {
+		"a": "Queue",
+		"b": "Stack",
+		"c": "Array",
+		"d": "Hash table"
+	    },
+	    "correctAnswer": "b",
+	    "difficulty": "beginner"
+	},
+	{
+	    "question": "If a language is regular, which type of automaton can always recognize it?",
+	    "answers": {
+		"a": "Pushdown automaton",
+		"b": "Turing machine",
+		"c": "Finite automaton",
+		"d": "Linear bounded automaton"
+	    },
+	    "correctAnswer": "c",
+	    "difficulty": "beginner"
+	}
+    ]
+
+}
