@@ -24,25 +24,25 @@
     "difficulty": "beginner"
   },
   {
-    "question": "A context-free grammar (CFG) consists of which set of components?",
+    "question": "A PDA accepts a string if:",
     "answers": {
-      "a": "Terminals, non-terminals, start symbol, and production rules",
-      "b": "States, transitions, and input symbols",
-      "c": "Initial state, final state, and stack symbols",
-      "d": "Alphabet, states, and final states"
+      "a": "It reaches a final state with non-empty stack",
+      "b": "It consumes the entire input and reaches a final state and/or has an empty stack",
+      "c": "It has at least one transition defined for every state",
+      "d": "The stack contains only the initial symbol"
     },
-    "correctAnswer": "a",
+    "correctAnswer": "b",
     "difficulty": "beginner"
   },
   {
-    "question": "Which of the following problems can be solved by a context-free grammar (CFG) but not by a DFA?",
+    "question": "In a PDA transition δ(q, a, X) = (p, α), what does each component represent?",
     "answers": {
-      "a": "Balanced parentheses",
-      "b": "String matching",
-      "c": "Counting even number of zeros",
-      "d": "Recognizing binary multiples of 3"
+      "a": "q is next state, a is stack symbol, X is input, p is current state, α is new input",
+      "b": "q is current state, a is input symbol, X is top of stack, p is next state, α is stack replacement",
+      "c": "q is initial state, a is final symbol, X is empty stack, p is accepting state, α is input string",
+      "d": "q is stack top, a is next state, X is current state, p is input symbol, α is output"
     },
-    "correctAnswer": "a",
+    "correctAnswer": "b",
     "difficulty": "intermediate"
   },
   {
@@ -57,25 +57,25 @@
     "difficulty": "intermediate"
   },
   {
-    "question": "Which of the following is an example of a context-free language?",
+    "question": "What is an epsilon (ε) transition in a PDA?",
     "answers": {
-      "a": "The set of all strings with equal numbers of a's and b's",
-      "b": "The set of all palindromes over {a, b}",
-      "c": "The set of binary strings with an even number of zeros",
-      "d": "The set of all strings that contain 'aa' as a substring"
+      "a": "A transition that erases the entire stack",
+      "b": "A transition that occurs without reading any input symbol",
+      "c": "A transition that only works when the stack is empty",
+      "d": "A transition that rejects the input string"
     },
     "correctAnswer": "b",
     "difficulty": "intermediate"
   },
   {
-    "question": "Which of the following is NOT true for context-free grammars?",
+    "question": "Which of the following languages can be recognized by a PDA?",
     "answers": {
-      "a": "They can generate some non-regular languages",
-      "b": "They are equivalent in power to PDAs",
-      "c": "They are closed under union and concatenation",
-      "d": "They are closed under intersection"
+      "a": "L = { a^n b^n c^n | n ≥ 0 }",
+      "b": "L = { a^n b^n | n ≥ 0 }",
+      "c": "L = { ww | w ∈ {a,b}* }",
+      "d": "All regular languages only"
     },
-    "correctAnswer": "d",
+    "correctAnswer": "b",
     "difficulty": "advanced"
   },
   {
